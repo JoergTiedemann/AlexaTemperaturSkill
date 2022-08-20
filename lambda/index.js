@@ -14,7 +14,7 @@ const firebaseApp = require('firebase/app');
 const firebase = require('firebase');
 
 //const {getDatabase} = require('firebase/database');
-//require('firebase/database');
+require('firebase/database');
 
 // PLEASE FILL IN YOUR VALUES INSIDE CONFIG OBJECT. REFER TO THIS TUTORIAL TO GET STARTED : 
 
