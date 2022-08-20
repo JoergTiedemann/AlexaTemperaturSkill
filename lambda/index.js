@@ -87,6 +87,13 @@ const GetTemperatureIntentHandler = {
                 console.error(error);
                 });
 
+            console.log(`~~~~ firebase schreiben start`);
+
+            firebase.database().ref('Messwerte').set({
+                Temperatur: 64  });
+            console.log(`~~~~ firebase schreiben erfolgt`);
+
+
 /*
             var current = new Date();
             var date = current.toLocaleDateString();
