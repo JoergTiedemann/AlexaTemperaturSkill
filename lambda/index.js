@@ -70,6 +70,7 @@ const GetTemperatureIntentHandler = {
         try
         {
             firebase.database().goOnline();
+            console.log(`~~~~ firebase goOnline erfolgt`);
 /*
             var current = new Date();
             var date = current.toLocaleDateString();
@@ -80,10 +81,11 @@ const GetTemperatureIntentHandler = {
         })
         */
         firebase.database().goOffline();
+            console.log(`~~~~ firebase goOffline erfolgt`);
         }
         catch(e){
             console.log("~~~~ Catch Excetion logs here: ",e);
-            speakOutput = `Es gab ein Problembei der Datenbankabfrage`
+            speakOutput = `Es gab ein Problem bei der Datenbankabfrage`
         }
 
 
