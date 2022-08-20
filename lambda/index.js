@@ -12,8 +12,7 @@
 const Alexa = require('ask-sdk-core');
 const firebase = require('firebase/compat/app');
 
-//const {getDatabase} = require('firebase/database');
-const getDatabase = require('firebase/compat/database');
+require('firebase/compat/database');
 
 // PLEASE FILL IN YOUR VALUES INSIDE CONFIG OBJECT. REFER TO THIS TUTORIAL TO GET STARTED : 
 
@@ -29,9 +28,7 @@ var config = {
 
 
 firebase.initializeApp(config);
-//let database = firebase.database('https://espdata-b473e-default-rtdb.europe-west1.firebasedatabase.app');
 const database = firebase.database();
-//const database = getDatabase(firebase);
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -78,6 +75,18 @@ const GetTemperatureIntentHandler = {
         {
             firebase.database().goOnline();
             console.log(`~~~~ firebase goOnline erfolgt`);
+            
+            const dbRef = firebase.database().ref();
+            dbRef.child('Messwerte').child('Temperature').get().then((snapshot) => {
+                if (snapshot.exists()) {
+                console.log('~~~~~ der Wert ist:',snapshot.val());
+                } else {
+                    console.log("No data available");
+                }
+            }).catch((error) => {
+                console.error(error);
+                });
+
 /*
             var current = new Date();
             var date = current.toLocaleDateString();
