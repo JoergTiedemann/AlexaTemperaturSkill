@@ -10,8 +10,8 @@
  
  * */
 const Alexa = require('ask-sdk-core');
-//const firebase = require('firebase/app');
-var  firebase = require('firebase/app');
+const firebaseApp = require('firebase/app');
+const firebase = require('firebase');
 
 //const {getDatabase} = require('firebase/database');
 //require('firebase/database');
@@ -29,7 +29,7 @@ var config = {
 };
 
 
-firebase.initializeApp(config);
+firebaseApp.initializeApp(config);
 //let database = firebase.database('https://espdata-b473e-default-rtdb.europe-west1.firebasedatabase.app');
 const database = firebase.database();
 
