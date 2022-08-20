@@ -10,21 +10,19 @@ require('firebase/database');
 // PLEASE FILL IN YOUR VALUES INSIDE CONFIG OBJECT. REFER TO THIS TUTORIAL TO GET STARTED : 
 
 const config = {
-   
-   apiKey: "AIzaSyCSwdcpciYBuYy4NgA3kNYhaqirZZ5n-Xw",
+  apiKey: "AIzaSyCSwdcpciYBuYy4NgA3kNYhaqirZZ5n-Xw",
   authDomain: "espdata-b473e.firebaseapp.com",
   databaseURL: "https://espdata-b473e-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "espdata-b473e",
   storageBucket: "espdata-b473e.appspot.com",
   messagingSenderId: "64681322777",
   appId: "1:64681322777:web:069ec1f6b184ac7e3a7d88"
-  
 };
 
+/*
 firebase.initializeApp(config);
 const database = firebase.database();
-
-
+*/
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
