@@ -15,6 +15,6 @@
     "firebase": "^8.2.6",
     "firebase-functions": "3.13.0",
     "firebase-tools": "9.1.0",
-    "inflection": "^1
+    "inflection": "^1.12.0"
   }
 }
