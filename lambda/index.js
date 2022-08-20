@@ -67,7 +67,7 @@ const GetTemperatureIntentHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetTemperature';
     },
-    handle(handlerInput) {
+    async handle(handlerInput) {
         let speakOutput = 'Es wurde nach der Temperatur gefragt';
         console.log(`~~~~ GetTemperatureIntentHandler wurde aufgerufen`);
 
