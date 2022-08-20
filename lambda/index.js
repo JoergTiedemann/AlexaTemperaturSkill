@@ -4,6 +4,27 @@
  * session persistence, api calls, and more.
  * */
 const Alexa = require('ask-sdk-core');
+const firebase = require('firebase/app');
+require('firebase/database');
+
+// PLEASE FILL IN YOUR VALUES INSIDE CONFIG OBJECT. REFER TO THIS TUTORIAL TO GET STARTED : 
+
+const config = {
+   
+   apiKey: "AIzaSyCSwdcpciYBuYy4NgA3kNYhaqirZZ5n-Xw",
+  authDomain: "espdata-b473e.firebaseapp.com",
+  databaseURL: "https://espdata-b473e-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "espdata-b473e",
+  storageBucket: "espdata-b473e.appspot.com",
+  messagingSenderId: "64681322777",
+  appId: "1:64681322777:web:069ec1f6b184ac7e3a7d88"
+  
+};
+
+firebase.initializeApp(config);
+const database = firebase.database();
+
+
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -43,8 +64,28 @@ const GetTemperatureIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetTemperature';
     },
     handle(handlerInput) {
-        const speakOutput = 'Es wurde nach der Temperatur gefragt';
-      console.log(`~~~~ GetTemperatureIntentHandler wurde aufgerufen`);
+        let speakOutput = ''Es wurde nach der Temperatur gefragt';';
+        console.log(`~~~~ GetTemperatureIntentHandler wurde aufgerufen`);
+
+        try
+        {
+            firebase.database().goOnline();
+/*
+            var current = new Date();
+            var date = current.toLocaleDateString();
+            var time = current.toLocaleTimeString();
+            await database.ref('/Moods/' + moodSlot).set({
+            TIME : time,
+            DATE : date 
+        })
+        */
+        firebase.database().goOffline();
+        }
+        catch(e){
+            console.log("~~~~ Catch Excetion logs here: ",e);
+            speakOutput = `Es gab ein Problembei der Datenbankabfrage`
+        }
+
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
