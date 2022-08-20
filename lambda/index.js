@@ -4,12 +4,14 @@
  * session persistence, api calls, and more.
  * */
 const Alexa = require('ask-sdk-core');
-const firebase = require('firebase/app');
+//const firebase = require('firebase/app');
+var  firebase = require('firebase');
+
 require('firebase/database');
 
 // PLEASE FILL IN YOUR VALUES INSIDE CONFIG OBJECT. REFER TO THIS TUTORIAL TO GET STARTED : 
 
-const config = {
+var config = {
   apiKey: "AIzaSyCSwdcpciYBuYy4NgA3kNYhaqirZZ5n-Xw",
   authDomain: "espdata-b473e.firebaseapp.com",
   databaseURL: "https://espdata-b473e-default-rtdb.europe-west1.firebasedatabase.app",
@@ -21,7 +23,7 @@ const config = {
 
 
 firebase.initializeApp(config);
-const database = firebase.database();
+let database = firebase.database();
 
 
 const LaunchRequestHandler = {
