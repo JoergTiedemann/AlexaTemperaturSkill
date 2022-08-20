@@ -2,6 +2,12 @@
  * This sample demonstrates handling intents from an Alexa skill using the Alexa Skills Kit SDK (v2).
  * Please visit https://alexa.design/cookbook for additional examples on implementing slots, dialog management,
  * session persistence, api calls, and more.
+
+     "firebase-functions": "^3.22.0",
+    "firebase-tools": "^11.7.0",
+    "inflection": "^1.13.2"
+
+ 
  * */
 const Alexa = require('ask-sdk-core');
 //const firebase = require('firebase/app');
@@ -23,7 +29,7 @@ var config = {
 
 
 firebase.initializeApp(config);
-let database = firebase.database();
+//let database = firebase.database();
 
 
 const LaunchRequestHandler = {
