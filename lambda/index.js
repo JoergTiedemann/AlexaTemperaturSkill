@@ -29,7 +29,7 @@ var config = {
 
 
 firebase.initializeApp(config);
-//let database = firebase.database();
+let database = firebase.database();
 
 
 const LaunchRequestHandler = {
