@@ -5,7 +5,7 @@
  * */
 const Alexa = require('ask-sdk-core');
 //const firebase = require('firebase/app');
-var  firebase = require('firebase');
+var  firebase = require('firebase/app');
 
 require('firebase/database');
 
