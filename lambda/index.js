@@ -76,8 +76,8 @@ const GetTemperatureIntentHandler = {
             firebase.database().goOnline();
             console.log(`~~~~ firebase goOnline erfolgt`);
             
-            const dbRef = firebase.database().ref();
-            dbRef.child('/Messwerte/').child('/Temperatur/').get().then((snapshot) => {
+            const dbRef = database.ref();
+            await dbRef.child('/Messwerte/').child('/Temperatur/').get().then((snapshot) => {
                 if (snapshot.exists()) {
                 console.log('~~~~~ der Wert ist:',snapshot.val());
                 } else {
@@ -89,7 +89,7 @@ const GetTemperatureIntentHandler = {
 
             console.log(`~~~~ firebase schreiben start`);
 
-            firebase.database().ref('/Messwerte/').set({
+            await database.ref('/Messwerte/').set({
                 Temperatur: 64  });
             console.log(`~~~~ firebase schreiben erfolgt`);
 
