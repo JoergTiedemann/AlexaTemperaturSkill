@@ -29,8 +29,8 @@ var config = {
 
 
 firebase.initializeApp(config);
-let database = firebase.database('https://espdata-b473e-default-rtdb.europe-west1.firebasedatabase.app');
-
+//let database = firebase.database('https://espdata-b473e-default-rtdb.europe-west1.firebasedatabase.app');
+const database = getDatabase(firebase);
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
