@@ -29,7 +29,7 @@ var config = {
 
 
 firebase.initializeApp(config);
-let database = firebase.database();
+let database = firebase.database('https://espdata-b473e-default-rtdb.europe-west1.firebasedatabase.app');
 
 
 const LaunchRequestHandler = {
