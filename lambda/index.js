@@ -13,7 +13,7 @@ const Alexa = require('ask-sdk-core');
 //const firebase = require('firebase/app');
 var  firebase = require('firebase/app');
 
-const getDatabase = require('firebase/database');
+const {getDatabase} = require('firebase/database');
 //require('firebase/database');
 
 // PLEASE FILL IN YOUR VALUES INSIDE CONFIG OBJECT. REFER TO THIS TUTORIAL TO GET STARTED : 
