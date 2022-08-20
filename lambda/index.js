@@ -19,10 +19,10 @@ const config = {
   appId: "1:64681322777:web:069ec1f6b184ac7e3a7d88"
 };
 
-/*
+
 firebase.initializeApp(config);
 const database = firebase.database();
-*/
+
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -62,7 +62,7 @@ const GetTemperatureIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetTemperature';
     },
     handle(handlerInput) {
-        let speakOutput = ''Es wurde nach der Temperatur gefragt';';
+        let speakOutput = 'Es wurde nach der Temperatur gefragt';
         console.log(`~~~~ GetTemperatureIntentHandler wurde aufgerufen`);
 
         try
