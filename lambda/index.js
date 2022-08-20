@@ -10,11 +10,10 @@
  
  * */
 const Alexa = require('ask-sdk-core');
-const firebaseApp = require('firebase/app');
-const firebase = require('firebase');
+const firebase = require('firebase/app');
 
 //const {getDatabase} = require('firebase/database');
-require('firebase/database');
+const getDatabase = require('firebase/database');
 
 // PLEASE FILL IN YOUR VALUES INSIDE CONFIG OBJECT. REFER TO THIS TUTORIAL TO GET STARTED : 
 
@@ -29,9 +28,9 @@ var config = {
 };
 
 
-firebaseApp.initializeApp(config);
+firebase.initializeApp(config);
 //let database = firebase.database('https://espdata-b473e-default-rtdb.europe-west1.firebasedatabase.app');
-const database = firebase.database();
+//const database = firebase.database();
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
