@@ -10,7 +10,8 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Welcome, you can say Hello or Help. Which would you like to try?';
+        const speakOutput = 'Willkommen, Du kannst Hallo oder Hilfe sagen. Was möchtest Du tun ?';
+        console.log(`~~~~ LaunchRequest aufgerufen`);
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -41,7 +42,7 @@ const HelpIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'You can say hello to me! How can I help?';
+        const speakOutput = 'Du kannst Hallo oder Hilfe sagen! Wie kann ich helfen?';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -57,7 +58,7 @@ const CancelAndStopIntentHandler = {
                 || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
     },
     handle(handlerInput) {
-        const speakOutput = 'Goodbye!';
+        const speakOutput = 'Auf Wiedersehen!';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -75,7 +76,7 @@ const FallbackIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.FallbackIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'Sorry, I don\'t know about that. Please try again.';
+        const speakOutput = 'Sorry, davon habe ich keinen Ahnung. Versuche es erneut.';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -127,7 +128,7 @@ const ErrorHandler = {
         return true;
     },
     handle(handlerInput, error) {
-        const speakOutput = 'Sorry, I had trouble doing what you asked. Please try again.';
+        const speakOutput = 'Sorry, I es gab ein Problem mit dem was Du gesagt hast. Versuche es erneut.';
         console.log(`~~~~ Error handled: ${JSON.stringify(error)}`);
 
         return handlerInput.responseBuilder
