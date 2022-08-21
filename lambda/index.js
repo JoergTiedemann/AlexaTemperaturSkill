@@ -79,6 +79,7 @@ const GetTemperatureIntentHandler = {
             await dbRef.child('/Messwerte/').child('/Temperatur/').get().then((snapshot) => {
                 if (snapshot.exists()) {
                 console.log('~~~~~ der Wert ist:',snapshot.val());
+                let speakOutput ='Die Temperatur beträgt ',snapshot.val(),' Grad';
                 } else {
                     console.log("No data available");
                 }
@@ -86,12 +87,12 @@ const GetTemperatureIntentHandler = {
                 console.error(error);
                 });
 
-            console.log(`~~~~ firebase schreiben start`);
+  /*          console.log(`~~~~ firebase schreiben start`);
 
             await database.ref('/Messwerte/').set({
                 Temperatur: 64  });
             console.log(`~~~~ firebase schreiben erfolgt`);
-
+*/
 
 /*
             var current = new Date();
