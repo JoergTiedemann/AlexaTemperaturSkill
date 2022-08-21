@@ -79,8 +79,8 @@ const GetTemperatureIntentHandler = {
             await dbRef.child('/Messwerte/').child('/Temperatur/').get().then((snapshot) => {
                 if (snapshot.exists()) {
                 console.log('~~~~~ der Wert ist:',snapshot.val());
-                var temp = snapshot.val();
-                speakOutput ='Die Temperatur beträgt ${temp} Grad';
+                speakOutput = `Die Temperatur beträgt ${snapshot.val()} Grad `;
+
                 } else {
                     console.log("No data available");
                 }
