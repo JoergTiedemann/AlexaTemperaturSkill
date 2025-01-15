@@ -46,8 +46,9 @@ const signInWithEmail = async () => {
 firebase.initializeApp(config);
 const auth = firebase.auth();
 
-//firebase.auth.setPersistence(firebase.auth.Auth.Persistence.NONE)
-//console.error('set Persistence erfolgt');
+console.error('vor set Persistence');
+auth.setPersistence(auth.Auth.Persistence.NONE)
+console.error('set Persistence erfolgt');
 
 const database = firebase.database();
 
