@@ -13,7 +13,7 @@ const Alexa = require('ask-sdk-core');
 const firebase = require('firebase/compat/app');
 
 require('firebase/compat/database');
-require('firebase/auth');
+const auth = require('firebase/auth');
 
 // PLEASE FILL IN YOUR VALUES INSIDE CONFIG OBJECT. REFER TO THIS TUTORIAL TO GET STARTED : 
 
@@ -33,7 +33,7 @@ const password = 'bkrrnt7H';
 
 const signInWithEmail = async () => {
   try {
-    const userCredential = await firebase.getAuth().signInWithEmailAndPassword(email, password);
+    const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
     console.error('sign In Erfolgreich:', userCredential.user);
     return userCredential.user;
   } catch (error) {
