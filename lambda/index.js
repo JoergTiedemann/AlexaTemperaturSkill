@@ -98,6 +98,7 @@ const GetTemperatureIntentHandler = {
     async handle(handlerInput) {
         let speakOutput = 'Es wurde nach der Temperatur gefragt';
         console.log(`~~~~ GetTemperatureIntentHandler wurde aufgerufen`);
+/*            
 
         try
         {
@@ -105,7 +106,6 @@ const GetTemperatureIntentHandler = {
 
             await signInWithEmail();
             console.log(`~~~~ firebase goOnline erfolgt`);
-/*            
             const dbRef = database.ref();
             
             await dbRef.child('/Heizung/Heizungsmonitor/Heizungstatus/aktuelleTemp/').get().then((snapshot) => {
@@ -139,7 +139,6 @@ const GetTemperatureIntentHandler = {
                     */
         
         //firebase.database().goOffline();
-*/
         await auth.signOut();
             console.log(`~~~~ firebase goOffline erfolgt`);
         }
@@ -147,6 +146,7 @@ const GetTemperatureIntentHandler = {
             console.log("~~~~ Catch Excetion logs here: ",e);
             speakOutput = `Es gab ein Problem bei der Datenbankabfrage`
         }
+*/
 
 
         console.log('Antwort:',speakOutput);
