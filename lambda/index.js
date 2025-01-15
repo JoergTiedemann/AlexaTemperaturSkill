@@ -26,6 +26,9 @@ var config = {
   appId: "1:64681322777:web:069ec1f6b184ac7e3a7d88"
 };
 
+const email = 'joerg-tiedemann@gmx.de';
+const password = 'bkrrnt7H';
+
 
 firebase.initializeApp(config);
 const database = firebase.database();
