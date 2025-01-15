@@ -46,7 +46,7 @@ const signInWithEmail = async () => {
 firebase.initializeApp(config);
 const auth = firebase.auth();
 const database = firebase.database();
-const off = database.off();
+//const off = database.off();
 
 try
 {
@@ -104,7 +104,15 @@ const GetTemperatureIntentHandler = {
         {
             await signInWithEmail();
             console.log(`~~~~ firebase goOnline erfolgt`);
+            const snapshot = await database.ref('/Messwerte').once('Temperatur');
 
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    speakOutput = `Daten werden geladen: ${data.yourField}`;
+                } else {
+                    speakOutput = 'Dokument nicht gefunden.';
+                }
+/*
             const dbRef = database.ref();
             //            await dbRef.child('/Heizung/Heizungsmonitor/Heizungstatus/aktuelleTemp/').get().then((snapshot) => {
             await dbRef.child('/Messwerte/Temperatur/').get().then((snapshot) => {
@@ -119,9 +127,7 @@ const GetTemperatureIntentHandler = {
                 console.error(error);
                 });
 
-            console.log('vor off');
-        off(dbRef);
-            console.log('nach off');
+            */
         await auth.signOut();
             console.log(`~~~~ firebase goOffline erfolgt`);
         }
