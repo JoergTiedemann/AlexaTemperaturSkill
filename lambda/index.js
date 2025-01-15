@@ -47,7 +47,7 @@ firebase.initializeApp(config);
 const auth = firebase.auth();
 const database = firebase.database();
 const off = database.off();
-/*
+
 try
 {
     console.log('vor set Persistence');
@@ -59,7 +59,7 @@ catch(e)
 {
     console.log("~~~~ Catch Excetion setpersistence logs here: ",e);
 }
-*/
+
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
