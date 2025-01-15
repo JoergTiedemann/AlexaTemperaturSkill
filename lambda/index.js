@@ -104,7 +104,8 @@ const GetTemperatureIntentHandler = {
             console.log(`~~~~ firebase goOnline erfolgt`);
 
             const dbRef = database.ref();
-            await dbRef.child('/Heizung/Heizungsmonitor/Heizungstatus/aktuelleTemp/').get().then((snapshot) => {
+            //            await dbRef.child('/Heizung/Heizungsmonitor/Heizungstatus/aktuelleTemp/').get().then((snapshot) => {
+            await dbRef.child('/Messwerte/Temperatur/').get().then((snapshot) => {
                 if (snapshot.exists()) {
                 console.log('~~~~~ der Wert ist:',snapshot.val());
                 speakOutput = `Die Temperatur beträgt ${snapshot.val()} Grad `;
