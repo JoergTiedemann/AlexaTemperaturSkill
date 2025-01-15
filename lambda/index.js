@@ -111,7 +111,7 @@ const GetTemperatureIntentHandler = {
             await dbRef.child('/Heizung/Heizungsmonitor/Heizungstatus/aktuelleTemp/').get().then((snapshot) => {
                 if (snapshot.exists()) {
                 console.log('~~~~~ der Wert ist:',snapshot.val());
-                let speakOutput = `Die Temperatur beträgt ${snapshot.val()} Grad `;
+                speakOutput = `Die Temperatur beträgt ${snapshot.val()} Grad `;
 
                 } else {
                     console.log("No data available");
@@ -137,12 +137,12 @@ const GetTemperatureIntentHandler = {
         })
         */
         //firebase.database().goOffline();
-        auth.signOut();
+        await auth.signOut();
             console.log(`~~~~ firebase goOffline erfolgt`);
         }
         catch(e){
             console.log("~~~~ Catch Excetion logs here: ",e);
-            let speakOutput = `Es gab ein Problem bei der Datenbankabfrage`
+            speakOutput = `Es gab ein Problem bei der Datenbankabfrage`
         }
 
 
