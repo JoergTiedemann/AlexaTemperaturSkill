@@ -33,6 +33,7 @@ const password = 'bkrrnt7H';
 const signInWithEmail = async () => {
   try {
     const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
+    console.error('sign In Erfolgreich:', userCredential.user);
     return userCredential.user;
   } catch (error) {
     console.error('Error signing in with email and password:', error);
@@ -91,7 +92,7 @@ const GetTemperatureIntentHandler = {
             console.log(`~~~~ firebase goOnline erfolgt`);
             
             const dbRef = database.ref();
-            await dbRef.child('/Messwerte/').child('/Temperatur/').get().then((snapshot) => {
+            await dbRef.child('/Heizung/').child('/Heizungsmonitor/').child('/Heizungstatus/').child('/aktuelleTemp/').get().then((snapshot) => {
                 if (snapshot.exists()) {
                 console.log('~~~~~ der Wert ist:',snapshot.val());
                 speakOutput = `Die Temperatur beträgt ${snapshot.val()} Grad `;
