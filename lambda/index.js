@@ -105,10 +105,9 @@ const GetTemperatureIntentHandler = {
 
             await signInWithEmail();
             console.log(`~~~~ firebase goOnline erfolgt`);
-            
+/*            
             const dbRef = database.ref();
             
-//            await dbRef.child('/Heizung/').child('/Heizungsmonitor/').child('/Heizungstatus/').child('/aktuelleTemp/').get().then((snapshot) => {
             await dbRef.child('/Heizung/Heizungsmonitor/Heizungstatus/aktuelleTemp/').get().then((snapshot) => {
                 if (snapshot.exists()) {
                 console.log('~~~~~ der Wert ist:',snapshot.val());
@@ -121,24 +120,26 @@ const GetTemperatureIntentHandler = {
                 console.error(error);
                 });
 
-  /*          console.log(`~~~~  schreiben start`);
+              /*          console.log(`~~~~  schreiben start`);
+            
+                        await database.ref('/Messwerte/').set({
+                            Temperatur: 64  });
+                        console.log(`~~~~ firebase schreiben erfolgt`);
+            */
 
-            await database.ref('/Messwerte/').set({
-                Temperatur: 64  });
-            console.log(`~~~~ firebase schreiben erfolgt`);
+
+            /*
+                        var current = new Date();
+                        var date = current.toLocaleDateString();
+                        var time = current.toLocaleTimeString();
+                        await database.ref('/Moods/' + moodSlot).set({
+                        TIME : time,
+                        DATE : date 
+                    })
+                    */
+        
 */
-
-
-/*
-            var current = new Date();
-            var date = current.toLocaleDateString();
-            var time = current.toLocaleTimeString();
-            await database.ref('/Moods/' + moodSlot).set({
-            TIME : time,
-            DATE : date 
-        })
-        */
-        //firebase.database().goOffline();
+        // firebase.database().goOffline();
         await auth.signOut();
             console.log(`~~~~ firebase goOffline erfolgt`);
         }
