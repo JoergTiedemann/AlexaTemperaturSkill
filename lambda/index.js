@@ -109,6 +109,9 @@ const GetTemperatureIntentHandler = {
                 if (snapshot.exists()) {
                     const data = snapshot.val();
                     speakOutput = `Daten werden geladen: ${data.Temperatur}`;
+                    // Dienste deaktivieren
+                    await auth.signOut();
+                    firebase.app().delete();
                 } else {
                     speakOutput = 'Dokument nicht gefunden.';
                 }
@@ -128,7 +131,7 @@ const GetTemperatureIntentHandler = {
                 });
 
             */
-        await auth.signOut();
+        //await auth.signOut();
             console.log(`~~~~ firebase goOffline erfolgt`);
         }
         catch(e){
