@@ -12,6 +12,6 @@
     "ask-sdk-core": "^2.7.0",
     "ask-sdk-model": "^1.19.0",
     "aws-sdk": "^2.326.0",
-    "firebase": "^10.7.1"
+    "firebase": "^8.2.6"
   }
 }
