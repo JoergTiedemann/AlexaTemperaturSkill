@@ -13,6 +13,7 @@ const Alexa = require('ask-sdk-core');
 const firebase = require('firebase/compat/app');
 
 require('firebase/compat/database');
+require('firebase/auth');
 
 // PLEASE FILL IN YOUR VALUES INSIDE CONFIG OBJECT. REFER TO THIS TUTORIAL TO GET STARTED : 
 
