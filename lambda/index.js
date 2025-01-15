@@ -33,7 +33,7 @@ const password = 'bkrrnt7H';
 
 const signInWithEmail = async () => {
   try {
-    const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
+    const userCredential = await firebase.getAuth().signInWithEmailAndPassword(email, password);
     console.error('sign In Erfolgreich:', userCredential.user);
     return userCredential.user;
   } catch (error) {
