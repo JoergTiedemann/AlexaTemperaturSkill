@@ -104,11 +104,11 @@ const GetTemperatureIntentHandler = {
         {
             await signInWithEmail();
             console.log(`~~~~ firebase goOnline erfolgt`);
-            const snapshot = await database.ref('/Messwerte').once('Temperatur');
+            const snapshot = await database.ref('/Messwerte').once('value');
 
                 if (snapshot.exists()) {
                     const data = snapshot.val();
-                    speakOutput = `Daten werden geladen: ${data.yourField}`;
+                    speakOutput = `Daten werden geladen: ${data.Temperatur}`;
                 } else {
                     speakOutput = 'Dokument nicht gefunden.';
                 }
