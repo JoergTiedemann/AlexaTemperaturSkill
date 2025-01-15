@@ -46,8 +46,17 @@ const signInWithEmail = async () => {
 firebase.initializeApp(config);
 const auth = firebase.auth();
 const database = firebase.database();
+try
+{
+    console.log('vor set Persistence');
+auth.setPersistence(firebase.auth.Auth.Persistence.NONE);
+console.log('set Persistence erfolgt');
 
-
+}
+catch(e)
+{
+    console.log("~~~~ Catch Excetion setpersistence logs here: ",e);
+}
 
 
 const LaunchRequestHandler = {
@@ -93,9 +102,6 @@ const GetTemperatureIntentHandler = {
         try
         {
             //firebase.database().goOnline();
-console.log('vor set Persistence');
-auth.setPersistence(firebase.auth.Auth.Persistence.NONE);
-console.log('set Persistence erfolgt');
 
             await signInWithEmail();
             console.log(`~~~~ firebase goOnline erfolgt`);
