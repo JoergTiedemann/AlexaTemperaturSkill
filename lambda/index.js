@@ -49,6 +49,7 @@ const database = firebase.database();
 
 
 
+
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
@@ -93,7 +94,7 @@ const GetTemperatureIntentHandler = {
         {
             //firebase.database().goOnline();
 console.log('vor set Persistence');
-//auth.setPersistence(firebase.auth.Auth.Persistence.NONE);
+auth.setPersistence(firebase.auth.Auth.Persistence.NONE);
 console.log('set Persistence erfolgt');
 
             await signInWithEmail();
