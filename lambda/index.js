@@ -30,6 +30,17 @@ const email = 'joerg-tiedemann@gmx.de';
 const password = 'bkrrnt7H';
 
 
+const signInWithEmail = async () => {
+  try {
+    const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
+    return userCredential.user;
+  } catch (error) {
+    console.error('Error signing in with email and password:', error);
+    throw error;
+  }
+};
+
+
 firebase.initializeApp(config);
 const database = firebase.database();
 
@@ -75,7 +86,8 @@ const GetTemperatureIntentHandler = {
 
         try
         {
-            firebase.database().goOnline();
+            //firebase.database().goOnline();
+            await signInWithEmail();
             console.log(`~~~~ firebase goOnline erfolgt`);
             
             const dbRef = database.ref();
