@@ -42,7 +42,7 @@ const signInWithEmail = async () => {
   }
 };
 
-
+/*
 firebase.initializeApp(config);
 const auth = firebase.auth();
 const database = firebase.database();
@@ -57,7 +57,7 @@ catch(e)
 {
     console.log("~~~~ Catch Excetion setpersistence logs here: ",e);
 }
-
+*/
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
