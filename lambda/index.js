@@ -34,7 +34,7 @@ const password = 'bkrrnt7H';
 const signInWithEmail = async () => {
   try {
     const userCredential = await auth.signInWithEmailAndPassword(email, password);
-    console.error('sign In Erfolgreich:', userCredential.user);
+    //console.log('sign In Erfolgreich:', userCredential.user);
     return userCredential.user;
   } catch (error) {
     console.error('Error signing in with email and password:', error);
@@ -45,13 +45,12 @@ const signInWithEmail = async () => {
 
 firebase.initializeApp(config);
 const auth = firebase.auth();
-
-
-console.error('vor set Persistence');
+console.log('vor set Persistence');
 auth.setPersistence(firebase.auth.Auth.Persistence.NONE);
-console.error('set Persistence erfolgt');
-
+console.log('set Persistence erfolgt');
 const database = firebase.database();
+
+
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -138,6 +137,7 @@ const GetTemperatureIntentHandler = {
         }
 
 
+        console.log('Antwort:',speakOutput);
         return handlerInput.responseBuilder
             .speak(speakOutput)
             //.reprompt(speakOutput)
