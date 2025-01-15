@@ -46,6 +46,7 @@ const signInWithEmail = async () => {
 firebase.initializeApp(config);
 const auth = firebase.auth();
 const database = firebase.database();
+const off = database.off();
 /*
 try
 {
