@@ -105,7 +105,8 @@ const GetTemperatureIntentHandler = {
         const database = firebase.database();
         try
         {
-            await signInWithEmail();
+           // await signInWithEmail();
+            await auth.signInWithEmailAndPassword(email, password);
             console.log(`~~~~ firebase goOnline erfolgt`);
             const snapshot = await database.ref('/Heizung/Heizungsmonitor/Heizungstatus').once('value');
 
