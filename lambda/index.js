@@ -104,11 +104,11 @@ const GetTemperatureIntentHandler = {
         {
             await signInWithEmail();
             console.log(`~~~~ firebase goOnline erfolgt`);
-            const snapshot = await database.ref('/Messwerte').once('value');
+            const snapshot = await database.ref('/Heizung/Heizungsmonitor/Heizungstatus').once('value');
 
                 if (snapshot.exists()) {
                     const data = snapshot.val();
-                    speakOutput = `Daten werden geladen: ${data.Temperatur}`;
+                    speakOutput = `Die Temperatur beträgt ${data.aktuelleTemp} Grad`;
                     // Dienste deaktivieren
                     await auth.signOut();
                     firebase.app().delete();
