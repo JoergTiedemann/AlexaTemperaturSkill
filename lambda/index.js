@@ -97,7 +97,7 @@ const GetTemperatureIntentHandler = {
             //firebase.database().goOnline();
             await signInWithEmail();
             console.log(`~~~~ firebase goOnline erfolgt`);
-            
+/*            
             const dbRef = database.ref();
             await dbRef.child('/Heizung/').child('/Heizungsmonitor/').child('/Heizungstatus/').child('/aktuelleTemp/').get().then((snapshot) => {
                 if (snapshot.exists()) {
@@ -110,7 +110,7 @@ const GetTemperatureIntentHandler = {
             }).catch((error) => {
                 console.error(error);
                 });
-
+*/
   /*          console.log(`~~~~ firebase schreiben start`);
 
             await database.ref('/Messwerte/').set({
