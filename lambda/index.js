@@ -42,7 +42,7 @@ const signInWithEmail = async () => {
   }
 };
 
-
+/*
 firebase.initializeApp(config);
 const auth = firebase.auth();
 const database = firebase.database();
@@ -59,7 +59,7 @@ catch(e)
 {
     console.log("~~~~ Catch Excetion setpersistence logs here: ",e);
 }
-
+*/
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -100,6 +100,9 @@ const GetTemperatureIntentHandler = {
     async handle(handlerInput) {
         let speakOutput = 'Es wurde nach der Temperatur gefragt';
         console.log(`~~~~ GetTemperatureIntentHandler wurde aufgerufen`);
+        firebase.initializeApp(config);
+        const auth = firebase.auth();
+        const database = firebase.database();
         try
         {
             await signInWithEmail();
@@ -111,8 +114,8 @@ const GetTemperatureIntentHandler = {
                     speakOutput = `Die Temperatur beträgt ${data.aktuelleTemp} Grad`;
                     // Dienste deaktivieren
                     await auth.signOut();
-                    snapshot.off();
-                    //firebase.app().delete();
+                    //snapshot.off();
+                    firebase.app().delete();
                 } else {
                     speakOutput = 'Dokument nicht gefunden.';
                 }
