@@ -118,7 +118,9 @@ const GetTemperatureIntentHandler = {
                 console.error(error);
                 });
 
-        
+            console.log('vor off');
+        off(dbRef);
+            console.log('nach off');
         await auth.signOut();
             console.log(`~~~~ firebase goOffline erfolgt`);
         }
