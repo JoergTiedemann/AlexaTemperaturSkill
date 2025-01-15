@@ -111,7 +111,8 @@ const GetTemperatureIntentHandler = {
                     speakOutput = `Die Temperatur beträgt ${data.aktuelleTemp} Grad`;
                     // Dienste deaktivieren
                     await auth.signOut();
-                    firebase.app().delete();
+                    snapshot.off();
+                    //firebase.app().delete();
                 } else {
                     speakOutput = 'Dokument nicht gefunden.';
                 }
