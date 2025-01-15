@@ -98,12 +98,9 @@ const GetTemperatureIntentHandler = {
     async handle(handlerInput) {
         let speakOutput = 'Es wurde nach der Temperatur gefragt';
         console.log(`~~~~ GetTemperatureIntentHandler wurde aufgerufen`);
-/*            
-
+/*
         try
         {
-            //firebase.database().goOnline();
-
             await signInWithEmail();
             console.log(`~~~~ firebase goOnline erfolgt`);
             const dbRef = database.ref();
@@ -120,25 +117,7 @@ const GetTemperatureIntentHandler = {
                 console.error(error);
                 });
 
-              /*          console.log(`~~~~  schreiben start`);
-            
-                        await database.ref('/Messwerte/').set({
-                            Temperatur: 64  });
-                        console.log(`~~~~ firebase schreiben erfolgt`);
-            */
-
-
-            /*
-                        var current = new Date();
-                        var date = current.toLocaleDateString();
-                        var time = current.toLocaleTimeString();
-                        await database.ref('/Moods/' + moodSlot).set({
-                        TIME : time,
-                        DATE : date 
-                    })
-                    */
         
-        //firebase.database().goOffline();
         await auth.signOut();
             console.log(`~~~~ firebase goOffline erfolgt`);
         }
@@ -148,7 +127,6 @@ const GetTemperatureIntentHandler = {
         }
 */
 
-
         console.log('Antwort:',speakOutput);
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -157,6 +135,20 @@ const GetTemperatureIntentHandler = {
             .getResponse();
     }
 };
+
+              /*          console.log(`~~~~  schreiben start`);
+            
+                        await database.ref('/Messwerte/').set({
+                            Temperatur: 64  });
+                        console.log(`~~~~ firebase schreiben erfolgt`);
+                        var current = new Date();
+                        var date = current.toLocaleDateString();
+                        var time = current.toLocaleTimeString();
+                        await database.ref('/Moods/' + moodSlot).set({
+                        TIME : time,
+                        DATE : date 
+                    })
+            */
 
 
 const HelpIntentHandler = {
