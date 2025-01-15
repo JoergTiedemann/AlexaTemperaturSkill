@@ -48,7 +48,7 @@ const auth = firebase.auth();
 
 
 console.error('vor set Persistence');
-auth.setPersistence(firebase.auth.Auth.Persistence.NONE)
+auth.setPersistence(firebase.auth.Auth.Persistence.NONE);
 console.error('set Persistence erfolgt');
 
 const database = firebase.database();
