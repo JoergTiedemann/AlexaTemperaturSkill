@@ -44,10 +44,7 @@ const signInWithEmail = async () => {
 
 
 firebase.initializeApp(config);
-console.error('initializeApp erfolgt');
-console.error('vor auth()');
 const auth = firebase.auth();
-console.error('nach auth()');
 
 //firebase.auth.setPersistence(firebase.auth.Auth.Persistence.NONE)
 //console.error('set Persistence erfolgt');
@@ -129,7 +126,8 @@ const GetTemperatureIntentHandler = {
             DATE : date 
         })
         */
-        firebase.database().goOffline();
+        //firebase.database().goOffline();
+        auth.signOut();
             console.log(`~~~~ firebase goOffline erfolgt`);
         }
         catch(e){
