@@ -1,0 +1,82 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "slots": [],
+          "name": "HelloWorldIntent",
+          "samples": [
+            "hallo",
+            "wie geht\u0027s dir",
+            "sag hallo welt",
+            "sag hali hallo",
+            "sag hallo"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "slots": [
+            {
+              "name": "messwert",
+              "type": "messwerte"
+            }
+          ],
+          "name": "GetMesswerte",
+          "samples": [
+            "Wie hoch ist die {messwert} am Esp",
+            "Wie ist die {messwert} von Esp"
+          ]
+        },
+        {
+          "slots": [],
+          "name": "GetTemperature",
+          "samples": [
+            "Temperatur ",
+            "Wie ist die Temperatur",
+            "Wie ist die Aussentemperatur",
+            "Wie warm ist es"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "name": {
+                "value": "Temeratur"
+              },
+              "id": "humidity"
+            },
+            {
+              "name": {
+                "value": "Luftfeuchtigkeit "
+              },
+              "id": "temperature"
+            }
+          ],
+          "name": "messwerte"
+        }
+      ],
+      "invocationName": "gartenhaus"
+    }
+  }
+}
