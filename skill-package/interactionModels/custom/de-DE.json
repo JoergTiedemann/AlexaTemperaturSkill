@@ -15,18 +15,6 @@
           "samples": []
         },
         {
-          "slots": [],
-          "name": "HelloWorldIntent",
-          "samples": [
-            "hallo",
-            "wie geht\u0027s dir",
-            "sag hallo welt",
-            "sag halli hallo",
-            "willkommen",
-            "sag hallo"
-          ]
-        },
-        {
           "name": "AMAZON.NavigateHomeIntent",
           "samples": []
         },
