@@ -5,8 +5,8 @@
         "de-DE": {
           "summary": "Skill für die Anbindung eines ESP8266",
           "examplePhrases": [
-            "Alexa frage Tiedemanns Monitor nach der Temperatur",
-            "Alexa starte Tiedemanns Monitor",
+            "Alexa frage Gartenhaus der Temperatur",
+            "Alexa starte Gartenhaus",
             "Temperatur"
           ],
           "keywords": [

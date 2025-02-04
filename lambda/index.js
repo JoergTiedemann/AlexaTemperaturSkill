@@ -66,7 +66,7 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Willkommen, Du kannst Hallali Hallo oder Hilfe sagen. Was möchtest Du tun ?';
+        const speakOutput = 'Willkommen, Du kannst Halli Hallo oder Hilfe sagen. Was möchtest Du tun ?';
         console.log(`~~~~ LaunchRequest aufgerufen`);
 
         return handlerInput.responseBuilder
