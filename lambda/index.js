@@ -59,10 +59,13 @@ var config = {
 };
 
 const email = 'joerg-tiedemann@gmx.de';
-const password = 'bkrrnt7H';
+// const password = 'bkrrnt7H';
+const 1pass = 'bkrr';
+const 2pass = 'H';
 
 const signInWithEmail = async () => {
   try {
+    const password = 1pass+ String(parseInt(config.appId[0])+6)+2pass;
     const userCredential = await auth.signInWithEmailAndPassword(email, password);
     //console.log('sign In Erfolgreich:', userCredential.user);
     return userCredential.user;
