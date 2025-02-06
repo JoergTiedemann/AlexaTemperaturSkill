@@ -60,9 +60,9 @@ var config = {
 
 const email = 'joerg-tiedemann@gmx.de';
 // const password = 'bkrrnt7H';
-const 1pass = 'bkrr';
-const 2pass = 'H';
-const password = 1pass+"nt" String(parseInt(config.appId[0])+6)+2pass;
+const Fpass = 'bkrr';
+const Spass = 'H';
+const password = Fpass+"nt" String(parseInt(config.appId[0])+6)+Spass;
 console.log('pass:', password);
 
 const signInWithEmail = async () => {
