@@ -26,18 +26,22 @@ const strings = {
     }
 };
 
-  const LocalizationRequestInterceptor = {
-    process(handlerInput) {
-      const locale = handlerInput.requestEnvelope.request.locale;
-      console.log(`LocalizationRequestInterceptor locale=${locale}`);
-  
-      handlerInput.t = (key) => {
-        const resource = strings[locale] || strings['en'];
-        // const resource = strings['de'];
+
+const LocalizationRequestInterceptor = {
+process(handlerInput) {
+    const locale = handlerInput.requestEnvelope.request.locale;
+    console.log(`LocalizationRequestInterceptor locale=${locale}`);
+
+    handlerInput.t = (key) => {
+    const resource = strings[locale] || strings['de-DE'];
+    // const resource = strings['de'];
+    if (resource[key])
         return resource[key];
-      };
-    }
-  };
+    else
+        return key;
+    };
+}
+};
 
 
 // PLEASE FILL IN YOUR VALUES INSIDE CONFIG OBJECT. REFER TO THIS TUTORIAL TO GET STARTED : 
@@ -91,7 +95,7 @@ const LaunchRequestHandler = {
     },
     handle(handlerInput) {
         // const speakOutput = 'Willkommen, Du kannst Halli Hallo oder Hilfe sagen. Was möchtest Du tun ?';
-        const speakOutput = handlerInput.t('welcome_message')
+        const speakOutput = handlerInput.t('welcome_message');
         console.log(`~~~~ LaunchRequest aufgerufen`);
 
         return handlerInput.responseBuilder
@@ -202,7 +206,7 @@ const CancelAndStopIntentHandler = {
                 || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
     },
     handle(handlerInput) {
-        const speakOutput = 'Auf Wiedersehen!';
+        const speakOutput = handlerInput.t('bybye_message')
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
