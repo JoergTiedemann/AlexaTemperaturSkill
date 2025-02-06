@@ -17,8 +17,8 @@ require('firebase/auth');
 
 const strings = {
     "de": {
-      "welcome_message": "Willkommen zur Abfrage der Temperatur vom Gartenhaus. Du kannst Halli Hallo oder Hilfe sagen. Was möchtest Du tun ?",
-      "help_message": "Du kannst Wie die die Temperatur sagen oder Wie ist die Temperatur von Gartenhaus oder wie ist die Temperatur! Wie kann ich helfen?"
+      "welcome_message": "Willkommen zur Abfrage der Temperatur vom Gartenhaus. Du kannst Hallo oder Hilfe sagen. Was möchtest Du tun ?",
+      "help_message": "Du kannst Wie ist die Temperatur sagen oder Wie ist die Temperatur von Gartenhaus oder wie ist die Temperatur! Wie kann ich helfen?"
     }
   };
 /*
