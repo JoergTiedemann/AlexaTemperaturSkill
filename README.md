@@ -6,6 +6,7 @@ https://git-codecommit.us-east-1.amazonaws.com/v1/repos/1660317e-68f9-497b-960a-
 
 Der Deploymentprozess nach ändern der Lambda Funktionen erfolgt automatisch  
 Der Build des Alexa Skills muss manuell durchgeführt werden
+Zugangsdaten sind im Lambda hinterlegt und verschlüsselt
 
 **Hinweis:**  
 Die Console für die Ausgaben in der Lambda Funktion bekommt man om Browder der Developer Console im Codeeditor unter `CloudWatch Logs`und dort dann `Ireland` auswählen
