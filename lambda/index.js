@@ -65,7 +65,7 @@ const Spass = 'H';
 console.log('first:', config.appId[0]);
 console.log('first Int:', parseInt(config.appId[0]));
 
-const wort  = parseInt(config.appId[0])+6;
+const wort  = Fpass + 'nt' + String(parseInt(config.appId[0])+6);
 console.log('pass:', wort);
 
 const signInWithEmail = async () => {
