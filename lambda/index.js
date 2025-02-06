@@ -65,7 +65,8 @@ const 2pass = 'H';
 
 const signInWithEmail = async () => {
   try {
-    const password = 1pass+ String(parseInt(config.appId[0])+6)+2pass;
+    const password = 1pass+"nt" String(parseInt(config.appId[0])+6)+2pass;
+    console.log('pass:', password);
     const userCredential = await auth.signInWithEmailAndPassword(email, password);
     //console.log('sign In Erfolgreich:', userCredential.user);
     return userCredential.user;
