@@ -3,17 +3,20 @@
     "publishingInformation": {
       "locales": {
         "de-DE": {
-          "summary": "Skill für die Anbindung eines ESP8266",
+          "summary": "Skill für die Abfrage der Temperaztur vom Gartenhaus übber firebase und ESP32",
           "examplePhrases": [
-            "Alexa frage Gartenhaus der Temperatur",
+            "Alexa frage Gartenhaus nach der Temperatur",
             "Alexa starte Gartenhaus",
+            "Alexa wie ist die Temperautur von Gartenhaus",
             "Temperatur"
           ],
           "keywords": [
-            "ESP8266"
+            "ESP32"
+            "Firebase",
+            "Gartenhaus"
           ],
-          "name": "ESP8266 Firebase Connector",
-          "description": "ESP8266 wird an firebase angebunden. Firebase fungiert als Backend an den dann auch dieser Skill anbindet",
+          "name": "ESP32 Firebase Connector",
+          "description": "ESP32 wird an firebase angebunden. Firebase fungiert als Backend an den dann auch dieser Skill anbindet",
           "smallIconUri": "file://assets/images/de-DE_smallIconUri.png",
           "largeIconUri": "file://assets/images/de-DE_largeIconUri.png"
         }

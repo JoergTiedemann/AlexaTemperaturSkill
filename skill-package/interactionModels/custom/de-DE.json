@@ -39,10 +39,13 @@
           "slots": [],
           "name": "GetTemperature",
           "samples": [
-            "Temperatur ",
+            "Temperatur",
             "Wie ist die Temperatur",
             "Wie ist die Aussentemperatur",
-            "Wie warm ist es"
+            "Wie warm ist es am Gartenhaus",
+            "Wie ist die Gartenhaustemperatur",
+            "Wie ist die Temperatur von Gartenhaus",
+            "Wie warm ist es draussen"
           ]
         }
       ],
