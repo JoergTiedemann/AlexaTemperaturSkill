@@ -15,6 +15,29 @@ const firebase = require('firebase/app');
 require('firebase/database');
 require('firebase/auth');
 
+const strings = {
+    "de": {
+      "welcome_message": "Willkommen zu meinem Alexa-Skill!",
+      "help_message": "Du kannst Hali Hallo oder Hilfe sagen! Wie kann ich helfen?"
+    },
+    "en": {
+      "welcome_message": "Welcome to my Alexa skill!",
+      "help_message": "You can say hello or help."
+    }
+  };
+  
+  const LocalizationRequestInterceptor = {
+    process(handlerInput) {
+      const locale = handlerInput.requestEnvelope.request.locale;
+  
+      handlerInput.t = (key) => {
+        const resource = strings[locale] || strings['en'];
+        return resource[key];
+      };
+    }
+  };
+
+
 // PLEASE FILL IN YOUR VALUES INSIDE CONFIG OBJECT. REFER TO THIS TUTORIAL TO GET STARTED : 
 
 var config = {
@@ -29,7 +52,6 @@ var config = {
 
 const email = 'joerg-tiedemann@gmx.de';
 const password = 'bkrrnt7H';
-
 
 const signInWithEmail = async () => {
   try {
@@ -160,7 +182,8 @@ const HelpIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'Du kannst Hali Hallo oder Hilfe sagen! Wie kann ich helfen?';
+        //const speakOutput = 'Du kannst Hali Hallo oder Hilfe sagen! Wie kann ich helfen?';
+        const speakOutput = handlerInput.t('help_message');
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -272,5 +295,6 @@ exports.handler = Alexa.SkillBuilders.custom()
         IntentReflectorHandler)
     .addErrorHandlers(
         ErrorHandler)
+    .addRequestInterceptors(LocalizationRequestInterceptor)
     .withCustomUserAgent('sample/hello-world/v1.2')
     .lambda();
