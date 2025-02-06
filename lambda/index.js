@@ -16,17 +16,15 @@ require('firebase/database');
 require('firebase/auth');
 
 const strings = {
-    "de": {
+    "de-DE": {
       "welcome_message": "Willkommen zur Abfrage der Temperatur vom Gartenhaus. Du kannst Hallo oder Hilfe sagen. Was möchtest Du tun ?",
       "help_message": "Du kannst Wie ist die Temperatur sagen oder Wie ist die Temperatur von Gartenhaus oder wie ist die Temperatur! Wie kann ich helfen?"
+    },
+    "en": {
+        "welcome_message": "Welcome to query temperature of garden cottage!",
+        "help_message": "You can say hello or help."
     }
-  };
-/*
-  "en": {
-    "welcome_message": "Welcome to my Alexa skill!",
-    "help_message": "You can say hello or help."
-  }
-*/
+};
 
   const LocalizationRequestInterceptor = {
     process(handlerInput) {
@@ -34,8 +32,8 @@ const strings = {
       console.log(`LocalizationRequestInterceptor locale=${locale}`);
   
       handlerInput.t = (key) => {
-        // const resource = strings[locale] || strings['en'];
-        const resource = strings['de'];
+        const resource = strings[locale] || strings['en'];
+        // const resource = strings['de'];
         return resource[key];
       };
     }
