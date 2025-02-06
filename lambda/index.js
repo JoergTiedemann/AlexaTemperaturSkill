@@ -62,11 +62,11 @@ const email = 'joerg-tiedemann';
 const Fpass = 'bkrr';
 const Spass = 'H';
 
-const password  = Fpass + 'nt' + String(parseInt(config.appId[0])+6) + Spass;
+const zugang   = Fpass + 'nt' + String(parseInt(config.appId[0])+6) + Spass;
 
 const signInWithEmail = async () => {
   try {
-    const userCredential = await auth.signInWithEmailAndPassword(email+'@gmx.de', password);
+    const userCredential = await auth.signInWithEmailAndPassword(email+'@gmx.de', zugang);
     //console.log('sign In Erfolgreich:', userCredential.user);
     return userCredential.user;
   } catch (error) {
@@ -125,7 +125,7 @@ const GetTemperatureIntentHandler = {
         try
         {
            // await signInWithEmail();
-            await auth.signInWithEmailAndPassword(email+'@gmx.de', password);
+            await auth.signInWithEmailAndPassword(email+'@gmx.de', zugang);
             console.log(`~~~~ firebase goOnline erfolgt`);
             const snapshot = await database.ref('/Heizung/Heizungsmonitor/Heizungstatus').once('value');
 
