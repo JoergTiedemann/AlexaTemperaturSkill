@@ -63,7 +63,7 @@ const password = 'bkrrnt7H';
 const Fpass = 'bkrr';
 const Spass = 'H';
 console.log('first:', config.appId[0]);
-console.log('first Int:', (parseInt(config.appId[0]));
+console.log('first Int:', parseInt(config.appId[0]));
 
 //const wort  = Fpass+"nt" String(parseInt(config.appId[0])+6)+Spass;
 //sconsole.log('pass:', wort);
