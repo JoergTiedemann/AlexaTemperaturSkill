@@ -18,11 +18,13 @@ require('firebase/auth');
 const strings = {
     "de-DE": {
       "welcome_message": "Willkommen zur Abfrage der Temperatur vom Gartenhaus. Du kannst Hallo oder Hilfe sagen. Was möchtest Du tun ?",
-      "help_message": "Du kannst Wie ist die Temperatur sagen oder Wie ist die Temperatur von Gartenhaus oder wie ist die Temperatur! Wie kann ich helfen?"
+      "help_message": "Du kannst Wie ist die Temperatur sagen oder Wie ist die Temperatur von Gartenhaus oder wie ist die Temperatur! Wie kann ich helfen?",
+      "byebye_message": "Auf Wiedersehen!"
     },
     "en": {
         "welcome_message": "Welcome to query temperature of garden cottage!",
-        "help_message": "You can say hello or help."
+        "help_message": "You can say hello or help.",
+        "byebye_message": "Bye bye!"
     }
 };
 
