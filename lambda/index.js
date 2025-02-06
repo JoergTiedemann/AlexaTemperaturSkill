@@ -17,21 +17,25 @@ require('firebase/auth');
 
 const strings = {
     "de": {
-      "welcome_message": "Willkommen zu meinem Alexa-Skill!",
-      "help_message": "Du kannst Hali Hallo oder Hilfe sagen! Wie kann ich helfen?"
-    },
-    "en": {
-      "welcome_message": "Welcome to my Alexa skill!",
-      "help_message": "You can say hello or help."
+      "welcome_message": "Willkommen zur Abfrage der Temperatur vom Gartenhaus. Du kannst Halli Hallo oder Hilfe sagen. Was möchtest Du tun ?",
+      "help_message": "Du kannst Wie die die Temperatur sagen oder Wie ist die Temperatur von Gartenhaus oder wie ist die Temperatur! Wie kann ich helfen?"
     }
   };
-  
+/*
+  "en": {
+    "welcome_message": "Welcome to my Alexa skill!",
+    "help_message": "You can say hello or help."
+  }
+*/
+
   const LocalizationRequestInterceptor = {
     process(handlerInput) {
       const locale = handlerInput.requestEnvelope.request.locale;
+      console.log(`LocalizationRequestInterceptor locale=${locale}`);
   
       handlerInput.t = (key) => {
-        const resource = strings[locale] || strings['en'];
+        // const resource = strings[locale] || strings['en'];
+        const resource = strings['de'];
         return resource[key];
       };
     }
@@ -88,7 +92,8 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Willkommen, Du kannst Halli Hallo oder Hilfe sagen. Was möchtest Du tun ?';
+        // const speakOutput = 'Willkommen, Du kannst Halli Hallo oder Hilfe sagen. Was möchtest Du tun ?';
+        const speakOutput = handlerInput.t('welcome_message')
         console.log(`~~~~ LaunchRequest aufgerufen`);
 
         return handlerInput.responseBuilder
