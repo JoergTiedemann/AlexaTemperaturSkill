@@ -76,10 +76,14 @@ const strings = {
       ], 
       'temperatur_message':[
         'Die Temperatur beträgt {temperatur} Grad',
+        '<say-as interpret-as="interjection">moin</say-as><break time="200ms"/>Die Temperatur beträgt {temperatur} Grad',
         'Draußen sind es {temperatur} Grad',
         'Am Gartenhaus sind es {temperatur} Grad',
+        '<say-as interpret-as="interjection">moin</say-as><break time="200ms"/>Im Garten sind es {temperatur} Grad',
         'Im Garten sind es {temperatur} Grad',
+        '<say-as interpret-as="interjection">moin</say-as><break time="200ms"/>{temperatur} Grad',
         '{temperatur} Grad',
+        '<say-as interpret-as="interjection">moin</say-as><break time="200ms"/>Es sind {temperatur} Grad',
         'Es sind {temperatur} Grad'
       ] 
     },
