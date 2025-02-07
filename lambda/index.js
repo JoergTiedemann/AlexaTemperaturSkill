@@ -30,7 +30,7 @@ const strings = {
       'general_error': 'Sorry, es gab ein Problem mit dem was Du gesagt hast. Versuche es erneut.',
       'kommentarUeber30_message':[
         '',
-        '<say-as interpret-as="interjection">puh</say-as><break time='200ms'/>echt heiss',
+        '<say-as interpret-as="interjection">puh</say-as><break time="200ms"/>echt heiss',
         'Kühl ist was anderes',
         'das Richtige für ein Kaltgetränk',
         'ziemlich heiss schon',
@@ -60,7 +60,7 @@ const strings = {
         '<say-as interpret-as="interjection">puh</say-as>',
         'Schmuddelwetter',
         'naßkalt',
-        '<say-as interpret-as="interjection">puh</say-as><break time='200ms'/>echt ungemütlich',
+        '<say-as interpret-as="interjection">puh</say-as><break time="200ms"/>echt ungemütlich',
         'kurz vor Bodenfrost',
         'Erkältungswetter',
         ''
