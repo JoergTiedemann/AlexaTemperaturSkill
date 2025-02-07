@@ -15,6 +15,8 @@ const firebase = require('firebase/app');
 require('firebase/database');
 require('firebase/auth');
 
+const  breaktime = "<break time='800ms'/>";
+
 const strings = {
     'de-DE': {
       'welcome_message': 'Willkommen zur Abfrage der Temperatur vom Gartenhaus. Du kannst Hallo oder Hilfe sagen. Was möchtest Du tun ?',
@@ -58,7 +60,7 @@ const strings = {
         '<say-as interpret-as"interjection">puh</say-as>',
         'Schmuddelwetter',
         'naßkalt',
-        'echt ungemütlich',
+        '<say-as interpret-as"interjection">puh</say-as>echt ungemütlich',
         'kurz vor Bodenfrost',
         'Erkältungswetter',
         ''
@@ -219,7 +221,7 @@ const GetTemperatureIntentHandler = {
                         kommentar = randomItemFromArray(handlerInput.t('kommentarUnterNull_message'));
                     console.log(`~~~~ Kommentar:`,kommentar);
                     if (kommentar)
-                    speakOutput = speakOutput + "<break time='1s'/>" + kommentar;
+                    speakOutput = speakOutput + breaktime + kommentar;
                     // Dienste deaktivieren
                     await auth.signOut();
                     //snapshot.off();
