@@ -20,6 +20,12 @@ const strings = {
       "welcome_message": "Willkommen zur Abfrage der Temperatur vom Gartenhaus. Du kannst Hallo oder Hilfe sagen. Was möchtest Du tun ?",
       "help_message": "Du kannst Wie ist die Temperatur sagen oder Wie ist die Temperatur von Gartenhaus oder wie ist die Temperatur! Wie kann ich helfen?",
       "byebye_message": "Auf Wiedersehen!",
+      "generaltemperatur_message":"Es wurde nach der Temperatur gefragt",
+      "firenbasedocument_error": "Dokument nicht gefunden.",
+      "firenbasedatabase_error": "Es gab ein Problem bei der Datenbankabfrage",
+      "fallback_message": "Sorry, ich habe keine Ahnung. Versuche es erneut.",
+      "NoIntentFound_error": "Kein Handler für Intend {intentName} definert",
+      "general_error": "Sorry, es gab ein Problem mit dem was Du gesagt hast. Versuche es erneut.",
       "temperatur_message": "Die Temperatur beträgt {temperatur} Grad"
     },
     "en": {
@@ -126,7 +132,7 @@ const GetTemperatureIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetTemperature';
     },
     async handle(handlerInput) {
-        let speakOutput = 'Es wurde nach der Temperatur gefragt';
+        let speakOutput = handlerInput.t('generaltemperatur_message');
         console.log(`~~~~ GetTemperatureIntentHandler wurde aufgerufen`);
         firebase.initializeApp(config);
         const auth = firebase.auth();
@@ -147,30 +153,14 @@ const GetTemperatureIntentHandler = {
                     //snapshot.off();
                     firebase.app().delete();
                 } else {
-                    speakOutput = 'Dokument nicht gefunden.';
+                    speakOutput = handlerInput.t('firebasedocument_error');
                 }
-/*
-            const dbRef = database.ref();
-            //            await dbRef.child('/Heizung/Heizungsmonitor/Heizungstatus/aktuelleTemp/').get().then((snapshot) => {
-            await dbRef.child('/Messwerte/Temperatur/').get().then((snapshot) => {
-                if (snapshot.exists()) {
-                console.log('~~~~~ der Wert ist:',snapshot.val());
-                speakOutput = `Die Temperatur beträgt ${snapshot.val()} Grad `;
-
-                } else {
-                    console.log("No data available");
-                }
-            }).catch((error) => {
-                console.error(error);
-                });
-
-            */
         //await auth.signOut();
             console.log(`~~~~ firebase goOffline erfolgt`);
         }
         catch(e){
             console.log("~~~~ Catch Excetion logs here: ",e);
-            speakOutput = `Es gab ein Problem bei der Datenbankabfrage`
+            speakOutput = handlerInput.t('firebasedatabse_error');
         }
 
 
@@ -204,9 +194,7 @@ const HelpIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
-        //const speakOutput = 'Du kannst Hali Hallo oder Hilfe sagen! Wie kann ich helfen?';
         const speakOutput = handlerInput.t('help_message');
-
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt(speakOutput)
@@ -222,7 +210,6 @@ const CancelAndStopIntentHandler = {
     },
     handle(handlerInput) {
         const speakOutput = handlerInput.t('byebye_message')
-
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .getResponse();
@@ -239,7 +226,7 @@ const FallbackIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.FallbackIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'Sorry, davon habe ich keinen Ahnung. Versuche es erneut.';
+        const speakOutput = handlerInput.t('fallback_message');
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -273,7 +260,7 @@ const IntentReflectorHandler = {
     },
     handle(handlerInput) {
         const intentName = Alexa.getIntentName(handlerInput.requestEnvelope);
-        const speakOutput = `You just triggered ${intentName}`;
+        const speakOutput = handlerInput.t('NoIntentFound_error', { intentName: intentName });
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -291,7 +278,7 @@ const ErrorHandler = {
         return true;
     },
     handle(handlerInput, error) {
-        const speakOutput = 'Sorry, I es gab ein Problem mit dem was Du gesagt hast. Versuche es erneut.';
+        const speakOutput = handlerInput.t('general_error');
         console.log(`~~~~ Error handled: ${JSON.stringify(error)}`);
 
         return handlerInput.responseBuilder
