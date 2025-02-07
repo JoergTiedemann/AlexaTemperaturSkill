@@ -377,11 +377,15 @@ exports.handler = Alexa.SkillBuilders.custom()
 
 function parseParameter(str,params) {
     let string = str;
-    for (const param in params) {
-        string = string.replace(`{${param}}`, params[param]);
-    console.log(`~~~~ parseParameter string :`,string);
+    console.log(`~~~~ parseParameter1 string :`,string);
+    if (params)
+    {
+        for (const param in params) {
+            string = string.replace(`{${param}}`, params[param]);
+        }
+    }
+    console.log(`~~~~ parseParameter2 string :`,string);
     return string;
-  }
 }
 
 
