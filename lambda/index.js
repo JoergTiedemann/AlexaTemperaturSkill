@@ -26,10 +26,56 @@ const strings = {
       "fallback_message": "Sorry, ich habe keine Ahnung. Versuche es erneut.",
       "NoIntentFound_error": "Kein Handler für Intend {intentName} definert",
       "general_error": "Sorry, es gab ein Problem mit dem was Du gesagt hast. Versuche es erneut.",
+      "kommentarUeber30_message":[
+        "",
+        "echt heiss",
+        "Kühl ist was anderes",
+        "das Richtige für ein Kaltgetränk",
+        "ziemlich heiss schon",
+        "hochsommerlich",
+        ""
+      ], 
+      "kommentar20bis30_message":[
+        "",
+        "ganz angenehm",
+        "Liegestuhlwetter",
+        "das Richtige für die Terrasse",
+        "noch nicht zu heiss",
+        "fast schon Hochsommer",
+        ""
+      ], 
+      "kommentar10bis20_message":[
+        "",
+        "nicht wirklich prickelend",
+        "geht gerade noch so",
+        "ein bischen ungemütlich",
+        "immerhin friert es nicht",
+        "nix für den Liegestuhl",
+        ""
+      ], 
+      "kommentarNullbis10_message":[
+        "",
+        "Schmuddelwetter",
+        "naßkalt",
+        "echt ungemütlich",
+        "kurz vor Bodenfrost",
+        "Erkältungswetter",
+        ""
+      ], 
+      "kommentarUnterNull_message":[
+        "",
+        "Saukalt draussen",
+        "echt kalt",
+        "bitter kalt",
+        "da friert einem der Arsch ab",
+        ""
+      ], 
       "temperatur_message":[
         "Die Temperatur beträgt {temperatur} Grad",
         "Draußen sind es {temperatur} Grad",
         "Am Gartenhaus sind es {temperatur} Grad",
+        "Im Garten sind es {temperatur} Grad",
+        "{temperatur} Grad",
         "Es sind {temperatur} Grad"
       ] 
     },
@@ -139,6 +185,7 @@ const GetTemperatureIntentHandler = {
     },
     async handle(handlerInput) {
         let speakOutput = handlerInput.t('generaltemperatur_message');
+        let kommentar = "";
         console.log(`~~~~ GetTemperatureIntentHandler wurde aufgerufen`);
         firebase.initializeApp(config);
         const auth = firebase.auth();
@@ -155,6 +202,17 @@ const GetTemperatureIntentHandler = {
                     // speakOutput = `Die Temperatur beträgt ${data.aktuelleTemp} Grad`;
                     let floatTemp = parseFloat(data.aktuelleTemp);
                     speakOutput =  randomItemFromArray(handlerInput.t('temperatur_message'),{temperatur: floatTemp.toFixed(1)});
+                    if (floatTemp >= 30)
+                        kommentar = randomItemFromArray(handlerInput.t('kommentarUeber30_message');
+                    else if (floatTemp >= 20)
+                        kommentar = randomItemFromArray(handlerInput.t('kommentar20bis30_message');
+                    else if (floatTemp >= 10)
+                        kommentar = randomItemFromArray(handlerInput.t('kommentar10bis20_message');
+                    else if (floatTemp >= 0)
+                        kommentar = randomItemFromArray(handlerInput.t('kommentarNullbis10_message');
+                    else
+                        kommentar = randomItemFromArray(handlerInput.t('kommentarUnterNull_message');
+                    speakOutput = speakOutput + " " + kommentar;
                     // Dienste deaktivieren
                     await auth.signOut();
                     //snapshot.off();
