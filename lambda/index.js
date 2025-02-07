@@ -219,7 +219,7 @@ const GetTemperatureIntentHandler = {
                         kommentar = randomItemFromArray(handlerInput.t('kommentarUnterNull_message'));
                     console.log(`~~~~ Kommentar:`,kommentar);
                     if (kommentar)
-                    speakOutput = speakOutput + '<break time="1S"/>' + kommentar;
+                    speakOutput = speakOutput + "<break time='1s'/>" + kommentar;
                     // Dienste deaktivieren
                     await auth.signOut();
                     //snapshot.off();
