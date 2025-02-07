@@ -16,74 +16,76 @@ require('firebase/database');
 require('firebase/auth');
 
 const strings = {
-    "de-DE": {
-      "welcome_message": "Willkommen zur Abfrage der Temperatur vom Gartenhaus. Du kannst Hallo oder Hilfe sagen. Was möchtest Du tun ?",
-      "help_message": "Du kannst Wie ist die Temperatur sagen oder Wie ist die Temperatur von Gartenhaus oder wie ist die Temperatur! Wie kann ich helfen?",
-      "byebye_message": "Auf Wiedersehen!",
-      "generaltemperatur_message":"Es wurde nach der Temperatur gefragt",
-      "firenbasedocument_error": "Dokument nicht gefunden.",
-      "firenbasedatabase_error": "Es gab ein Problem bei der Datenbankabfrage",
-      "fallback_message": "Sorry, ich habe keine Ahnung. Versuche es erneut.",
-      "NoIntentFound_error": "Kein Handler für Intend {intentName} definert",
-      "general_error": "Sorry, es gab ein Problem mit dem was Du gesagt hast. Versuche es erneut.",
-      "kommentarUeber30_message":[
-        "",
-        "echt heiss",
-        "Kühl ist was anderes",
-        "das Richtige für ein Kaltgetränk",
-        "ziemlich heiss schon",
-        "hochsommerlich",
-        ""
+    'de-DE': {
+      'welcome_message': 'Willkommen zur Abfrage der Temperatur vom Gartenhaus. Du kannst Hallo oder Hilfe sagen. Was möchtest Du tun ?',
+      'help_message': 'Du kannst Wie ist die Temperatur sagen oder Wie ist die Temperatur von Gartenhaus oder wie ist die Temperatur! Wie kann ich helfen?',
+      'byebye_message': 'Auf Wiedersehen!',
+      'generaltemperatur_message':'Es wurde nach der Temperatur gefragt',
+      'firenbasedocument_error': 'Dokument nicht gefunden.',
+      'firenbasedatabase_error': 'Es gab ein Problem bei der Datenbankabfrage',
+      'fallback_message': 'Sorry, ich habe keine Ahnung. Versuche es erneut.',
+      'NoIntentFound_error': 'Kein Handler für Intend {intentName} definert',
+      'general_error': 'Sorry, es gab ein Problem mit dem was Du gesagt hast. Versuche es erneut.',
+      'kommentarUeber30_message':[
+        '',
+        'echt heiss',
+        'Kühl ist was anderes',
+        'das Richtige für ein Kaltgetränk',
+        'ziemlich heiss schon',
+        'hochsommerlich',
+        ''
       ], 
-      "kommentar20bis30_message":[
-        "",
-        "ganz angenehm",
-        "Liegestuhlwetter",
-        "das Richtige für die Terrasse",
-        "noch nicht zu heiss",
-        "fast schon Hochsommer",
-        ""
+      'kommentar20bis30_message':[
+        '',
+        'ganz angenehm',
+        'Liegestuhlwetter',
+        'das Richtige für die Terrasse',
+        'noch nicht zu heiss',
+        'fast schon Hochsommer',
+        ''
       ], 
-      "kommentar10bis20_message":[
-        "",
-        "nicht wirklich prickelend",
-        "geht gerade noch so",
-        "ein bischen ungemütlich",
-        "immerhin friert es nicht",
-        "nix für den Liegestuhl",
-        ""
+      'kommentar10bis20_message':[
+        '',
+        'nicht wirklich prickelend',
+        'geht gerade noch so',
+        'ein bischen ungemütlich',
+        'immerhin friert es nicht',
+        'nix für den Liegestuhl',
+        ''
       ], 
-      "kommentarNullbis10_message":[
-        "",
-        "Schmuddelwetter",
-        "naßkalt",
-        "echt ungemütlich",
-        "kurz vor Bodenfrost",
-        "Erkältungswetter",
-        ""
+      'kommentarNullbis10_message':[
+        '',
+        '<say-as interpret-as"interjection">puh</say-as>',
+        'Schmuddelwetter',
+        'naßkalt',
+        'echt ungemütlich',
+        'kurz vor Bodenfrost',
+        'Erkältungswetter',
+        ''
       ], 
-      "kommentarUnterNull_message":[
-        "",
-        "Saukalt draussen",
-        "echt kalt",
-        "bitter kalt",
-        "da friert einem der Arsch ab",
-        ""
+      'kommentarUnterNull_message':[
+        '',
+        '<say-as interpret-as"interjection">puh</say-as>',
+        'Saukalt draussen',
+        'echt kalt',
+        'bitter kalt',
+        'da friert einem der Arsch ab',
+        ''
       ], 
-      "temperatur_message":[
-        "Die Temperatur beträgt {temperatur} Grad",
-        "Draußen sind es {temperatur} Grad",
-        "Am Gartenhaus sind es {temperatur} Grad",
-        "Im Garten sind es {temperatur} Grad",
-        "{temperatur} Grad",
-        "Es sind {temperatur} Grad"
+      'temperatur_message':[
+        'Die Temperatur beträgt {temperatur} Grad',
+        'Draußen sind es {temperatur} Grad',
+        'Am Gartenhaus sind es {temperatur} Grad',
+        'Im Garten sind es {temperatur} Grad',
+        '{temperatur} Grad',
+        'Es sind {temperatur} Grad'
       ] 
     },
-    "en": {
-        "welcome_message": "Welcome to query temperature of garden cottage!",
-        "help_message": "You can say hello or help.",
-        "temperatur_message": "The temperature is {temperatur} degrees",
-        "byebye_message": "Bye bye!"
+    'en': {
+        'welcome_message': 'Welcome to query temperature of garden cottage!',
+        'help_message': 'You can say hello or help.',
+        'temperatur_message': 'The temperature is {temperatur} degrees',
+        'byebye_message': 'Bye bye!'
     }
 };
 
@@ -100,9 +102,12 @@ process(handlerInput) {
     let string = resource[key]
     if (resource[key])
     {
-        for (const param in params) {
-            string = string.replace(`{${param}}`, params[param]);
-          }
+        if (params)
+        {
+            for (const param in params) {
+                string = string.replace(`{${param}}`, params[param]);
+            }
+        }
         // console.log(`return string :`,string);
         return string;
     }
@@ -213,7 +218,8 @@ const GetTemperatureIntentHandler = {
                     else
                         kommentar = randomItemFromArray(handlerInput.t('kommentarUnterNull_message'));
                     console.log(`~~~~ Kommentar:`,kommentar);
-                    speakOutput = speakOutput + " " + kommentar;
+                    if (kommentar)
+                    speakOutput = speakOutput + '<break time="1S"/>' + kommentar;
                     // Dienste deaktivieren
                     await auth.signOut();
                     //snapshot.off();
@@ -377,14 +383,12 @@ exports.handler = Alexa.SkillBuilders.custom()
 
 function parseParameter(str,params) {
     let string = str;
-    console.log(`~~~~ parseParameter1 string :`,string);
     if (params)
     {
         for (const param in params) {
             string = string.replace(`{${param}}`, params[param]);
         }
     }
-    console.log(`~~~~ parseParameter2 string :`,string);
     return string;
 }
 
