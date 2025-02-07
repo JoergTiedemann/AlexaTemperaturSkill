@@ -19,31 +19,41 @@ const strings = {
     "de-DE": {
       "welcome_message": "Willkommen zur Abfrage der Temperatur vom Gartenhaus. Du kannst Hallo oder Hilfe sagen. Was möchtest Du tun ?",
       "help_message": "Du kannst Wie ist die Temperatur sagen oder Wie ist die Temperatur von Gartenhaus oder wie ist die Temperatur! Wie kann ich helfen?",
-      "byebye_message": "Auf Wiedersehen!"
+      "byebye_message": "Auf Wiedersehen!",
+      "temperatur_message": "Die Temperatur beträgt {temperatur} Grad"
     },
     "en": {
         "welcome_message": "Welcome to query temperature of garden cottage!",
         "help_message": "You can say hello or help.",
+        "temperatur_message": "The temperature is {temperatur} degrees",
         "byebye_message": "Bye bye!"
     }
 };
-
 
 const LocalizationRequestInterceptor = {
 process(handlerInput) {
     const locale = handlerInput.requestEnvelope.request.locale;
     console.log(`LocalizationRequestInterceptor locale=${locale}`);
 
-    handlerInput.t = (key) => {
+    handlerInput.t = (key,params) => {
     const resource = strings[locale] || strings['de-DE'];
+    console.log(`Params:${params}`);
     // const resource = strings['de'];
+    let string = resource[key]
     if (resource[key])
-        return resource[key];
+    {
+        for (const param in params) {
+            string = string.replace(`{${param}}`, params[param]);
+          }
+       
+        return string;
+    }
     else
         return key;
     };
 }
 };
+ 
 
 
 // PLEASE FILL IN YOUR VALUES INSIDE CONFIG OBJECT. REFER TO THIS TUTORIAL TO GET STARTED : 
@@ -99,7 +109,6 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        // const speakOutput = 'Willkommen, Du kannst Halli Hallo oder Hilfe sagen. Was möchtest Du tun ?';
         const speakOutput = handlerInput.t('welcome_message');
         console.log(`~~~~ LaunchRequest aufgerufen`);
 
@@ -131,7 +140,8 @@ const GetTemperatureIntentHandler = {
 
                 if (snapshot.exists()) {
                     const data = snapshot.val();
-                    speakOutput = `Die Temperatur beträgt ${data.aktuelleTemp} Grad`;
+                    // speakOutput = `Die Temperatur beträgt ${data.aktuelleTemp} Grad`;
+                    speakOutput =  handlerInput.t('temperatur_message',{temperature: data.aktuelleTemp});
                     // Dienste deaktivieren
                     await auth.signOut();
                     //snapshot.off();
