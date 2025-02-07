@@ -41,6 +41,7 @@ const strings = {
     }
 };
 
+
 const LocalizationRequestInterceptor = {
 process(handlerInput) {
     const locale = handlerInput.requestEnvelope.request.locale;
@@ -48,7 +49,7 @@ process(handlerInput) {
 
     handlerInput.t = (key,params) => {
     const resource = strings[locale] || strings['de-DE'];
-    console.log(`Params:`,params);
+    // console.log(`Params:`,params);
     // const resource = strings['de'];
     let string = resource[key]
     if (resource[key])
@@ -56,10 +57,7 @@ process(handlerInput) {
         for (const param in params) {
             string = string.replace(`{${param}}`, params[param]);
           }
-          
-          
-        console.log(`return string :`,string);
-       
+        // console.log(`return string :`,string);
         return string;
     }
     else
@@ -156,7 +154,7 @@ const GetTemperatureIntentHandler = {
                     const data = snapshot.val();
                     // speakOutput = `Die Temperatur beträgt ${data.aktuelleTemp} Grad`;
                     let floatTemp = parseFloat(data.aktuelleTemp);
-                    speakOutput =  randomItemFromArray(handlerInput.t('temperatur_message',{temperatur: floatTemp.toFixed(1)}));
+                    speakOutput =  randomItemFromArray(handlerInput.t('temperatur_message'),{temperatur: floatTemp.toFixed(1)});
                     // Dienste deaktivieren
                     await auth.signOut();
                     //snapshot.off();
@@ -318,8 +316,17 @@ exports.handler = Alexa.SkillBuilders.custom()
     .lambda();
 
 
-function randomItemFromArray(messages){
+function parseParameter(str,params) {
+    let string = str;
+    for (const param in params) {
+        string = string.replace(`{${param}}`, params[param]);
+    return string;
+  }
+}
+
+
+function randomItemFromArray(messages,params){
     const index = Math.floor(Math.random() * messages.length);
     console.log(`~~~~ randomItemFromArray index:`,index,` message:`,messages[index]);
-    return messages[index];   
+    return parseParameter(messages[index],params);   
 }
