@@ -37,7 +37,7 @@ process(handlerInput) {
 
     handlerInput.t = (key,params) => {
     const resource = strings[locale] || strings['de-DE'];
-    console.log(`Params:${params}`);
+    console.log(`Params:`,params);
     // const resource = strings['de'];
     let string = resource[key]
     if (resource[key])
@@ -141,7 +141,7 @@ const GetTemperatureIntentHandler = {
                 if (snapshot.exists()) {
                     const data = snapshot.val();
                     // speakOutput = `Die Temperatur beträgt ${data.aktuelleTemp} Grad`;
-                    speakOutput =  handlerInput.t('temperatur_message',{temperature: data.aktuelleTemp});
+                    speakOutput =  handlerInput.t('temperatur_message',{temperatur: data.aktuelleTemp});
                     // Dienste deaktivieren
                     await auth.signOut();
                     //snapshot.off();
