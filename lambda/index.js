@@ -212,6 +212,7 @@ const GetTemperatureIntentHandler = {
                         kommentar = randomItemFromArray(handlerInput.t('kommentarNullbis10_message'));
                     else
                         kommentar = randomItemFromArray(handlerInput.t('kommentarUnterNull_message'));
+                    console.log(`~~~~ Kommentar:`,kommentar);
                     speakOutput = speakOutput + " " + kommentar;
                     // Dienste deaktivieren
                     await auth.signOut();
@@ -378,6 +379,7 @@ function parseParameter(str,params) {
     let string = str;
     for (const param in params) {
         string = string.replace(`{${param}}`, params[param]);
+    console.log(`~~~~ parseParameter string :`,string);
     return string;
   }
 }
