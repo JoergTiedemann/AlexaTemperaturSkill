@@ -26,7 +26,12 @@ const strings = {
       "fallback_message": "Sorry, ich habe keine Ahnung. Versuche es erneut.",
       "NoIntentFound_error": "Kein Handler für Intend {intentName} definert",
       "general_error": "Sorry, es gab ein Problem mit dem was Du gesagt hast. Versuche es erneut.",
-      "temperatur_message": "Die Temperatur beträgt {temperatur} Grad"
+      "temperatur_message":[
+        "Die Temperatur beträgt {temperatur} Grad",
+        "Draußen sind es {temperatur} Grad",
+        "Am Gartenhaus sind es {temperatur} Grad",
+        "Es sind {temperatur} Grad"
+      ] 
     },
     "en": {
         "welcome_message": "Welcome to query temperature of garden cottage!",
@@ -148,7 +153,7 @@ const GetTemperatureIntentHandler = {
                     const data = snapshot.val();
                     // speakOutput = `Die Temperatur beträgt ${data.aktuelleTemp} Grad`;
                     let floatTemp = parseFloat(data.aktuelleTemp);
-                    speakOutput =  handlerInput.t('temperatur_message',{temperatur: floatTemp.toFixed(1)});
+                    speakOutput =  randomItemFromArray(handlerInput.t('temperatur_message',{temperatur: floatTemp.toFixed(1)}));
                     // Dienste deaktivieren
                     await auth.signOut();
                     //snapshot.off();
@@ -308,3 +313,9 @@ exports.handler = Alexa.SkillBuilders.custom()
     .addRequestInterceptors(LocalizationRequestInterceptor)
     .withCustomUserAgent('sample/hello-world/v1.2')
     .lambda();
+
+
+function randomItemFromArray(messages){
+    const index = Math.floor(Math.random() * messages.length);
+    return messages[index];   
+}
