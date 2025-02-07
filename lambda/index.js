@@ -56,6 +56,9 @@ process(handlerInput) {
         for (const param in params) {
             string = string.replace(`{${param}}`, params[param]);
           }
+          
+          
+        console.log(`return string :`,string);
        
         return string;
     }
@@ -317,5 +320,6 @@ exports.handler = Alexa.SkillBuilders.custom()
 
 function randomItemFromArray(messages){
     const index = Math.floor(Math.random() * messages.length);
+    console.log(`~~~~ randomItemFromArray index:`,index,` message:`,messages[index]);
     return messages[index];   
 }
