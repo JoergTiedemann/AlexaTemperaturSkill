@@ -147,7 +147,8 @@ const GetTemperatureIntentHandler = {
                 if (snapshot.exists()) {
                     const data = snapshot.val();
                     // speakOutput = `Die Temperatur beträgt ${data.aktuelleTemp} Grad`;
-                    speakOutput =  handlerInput.t('temperatur_message',{temperatur: data.aktuelleTemp});
+                    let floatTemp = parseFloat(data.aktuelleTemp);
+                    speakOutput =  handlerInput.t('temperatur_message',{temperatur: floatTemp.toFixed(1)});
                     // Dienste deaktivieren
                     await auth.signOut();
                     //snapshot.off();
