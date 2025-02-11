@@ -47,6 +47,18 @@
             "Wie ist die Temperatur von Gartenhaus",
             "Wie warm ist es draussen"
           ]
+        },
+        {
+          "slots": [],
+          "name": "GetLuftfeuchtigkeit",
+          "samples": [
+            "Luftfeuchtigkeit",
+            "Wie ist die Luftfeuchtigkeit",
+            "Wie ist die Feuchtigkeitam Gartenhaus",
+            "Wie ist die Gartenhausluftfeuchtigkeit",
+            "Wie ist die Luftfeuchtigkeitvon Gartenhaus",
+            "Wie feucht ist es draussen"
+          ]
         }
       ],
       "types": [
