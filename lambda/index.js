@@ -276,7 +276,7 @@ const GetLuftfeuchtigkeitIntentHandler = {
                     const data = snapshot.val();
                     // speakOutput = `Die Temperatur beträgt ${data.aktuelleTemp} Grad`;
                     let floatFeucht = parseFloat(data.Luftfeuchtigkeit);
-                    speakOutput =  handlerInput.t('feuchtigkeit_message',{feuchtikeit: floatFeucht.toFixed(1)});
+                    speakOutput =  handlerInput.t('feuchtigkeit_message',{feuchtigkeit: floatFeucht.toFixed(1)});
                     console.log(`~~~~ Luftfeuchtigkeit:`,kommentar);
                     // if (kommentar)
                     // speakOutput = speakOutput + breaktime + kommentar;
