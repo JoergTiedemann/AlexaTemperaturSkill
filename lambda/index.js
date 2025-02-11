@@ -29,7 +29,7 @@ const strings = {
       'fallback_message': 'Sorry, ich habe keine Ahnung. Versuche es erneut.',
       'NoIntentFound_error': 'Kein Handler für Intend {intentName} definert',
       'general_error': 'Sorry, es gab ein Problem mit dem was Du gesagt hast. Versuche es erneut.',
-      'feuchtigkeit_message':'Die Luftfeuchtigkeit beträgt {Feuchtigkeit} Prozent',
+      'feuchtigkeit_message':'Die Luftfeuchtigkeit beträgt {feuchtigkeit} Prozent',
       'kommentarUeber30_message':[
         '',
         '<say-as interpret-as="interjection">puh</say-as><break time="200ms"/>echt heiss',
