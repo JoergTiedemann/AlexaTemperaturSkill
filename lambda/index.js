@@ -24,12 +24,14 @@ const strings = {
       'byebye_message': 'Auf Wiedersehen!',
       'generaltemperatur_message':'Es wurde nach der Temperatur gefragt',
       'generalfeuchtigkeit_message':'Es wurde nach der Luftfeuchtigkeit gefragt',
+      'generalzeit_message':'Es wurde nach der Messzeit gefragt',
       'firenbasedocument_error': 'Dokument nicht gefunden.',
       'firenbasedatabase_error': 'Es gab ein Problem bei der Datenbankabfrage',
       'fallback_message': 'Sorry, ich habe keine Ahnung. Versuche es erneut.',
       'NoIntentFound_error': 'Kein Handler für Intend {intentName} definert',
       'general_error': 'Sorry, es gab ein Problem mit dem was Du gesagt hast. Versuche es erneut.',
       'feuchtigkeit_message':'Die Luftfeuchtigkeit beträgt {feuchtigkeit} Prozent',
+      'messzeit_message':'Die Temperaturmessung wurde um {feuchtigkeit} Prozent durchgeführt',
       'kommentarUeber30_message':[
         '',
         '<say-as interpret-as="interjection">puh</say-as><break time="200ms"/>echt heiss',
@@ -305,6 +307,60 @@ const GetLuftfeuchtigkeitIntentHandler = {
     }
 };
 
+const GetTemperaturZeitIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetTemperaturZeit';
+    },
+    async handle(handlerInput) {
+        let speakOutput = handlerInput.t('generalzeit_message');
+        let kommentar = "";
+        console.log(`~~~~ GetTemperaturZeitIntentHandler wurde aufgerufen`);
+        firebase.initializeApp(config);
+        const auth = firebase.auth();
+        const database = firebase.database();
+        try
+        {
+           // await signInWithEmail();
+            await auth.signInWithEmailAndPassword(email+'@gmx.de', zugang);
+            console.log(`~~~~ firebase goOnline erfolgt`);
+            const snapshot = await database.ref('/Heizung/Heizungsmonitor/Heizungstatus').once('value');
+
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    // speakOutput = `Die Temperatur beträgt ${data.aktuelleTemp} Grad`;
+                    let floatFeucht = parseFloat(data.Luftfeuchtigkeit);
+                    speakOutput =  handlerInput.t('feuchtigkeit_message',{feuchtigkeit: floatFeucht.toFixed(1)});
+                    console.log(`~~~~ Luftfeuchtigkeit:`,kommentar);
+                    console.log(`~~~~ Temperaturzeit:`,data.Datumsstempel);
+                    // if (kommentar)
+                    // speakOutput = speakOutput + breaktime + kommentar;
+                    // Dienste deaktivieren
+                    await auth.signOut();
+                    //snapshot.off();
+                    firebase.app().delete();
+                } else {
+                    speakOutput = handlerInput.t('firebasedocument_error');
+                }
+        //await auth.signOut();
+            console.log(`~~~~ firebase goOffline erfolgt`);
+        }
+        catch(e){
+            console.log("~~~~ Catch Excetion logs here: ",e);
+            speakOutput = handlerInput.t('firebasedatabse_error');
+        }
+
+
+        console.log('Antwort:',speakOutput);
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            //.reprompt(speakOutput)
+            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .getResponse();
+    }
+};
+
+
 
               /*          console.log(`~~~~  schreiben start`);
             
@@ -430,6 +486,7 @@ exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
         GetLuftfeuchtigkeitIntentHandler,
+        GetTemperaturZeitIntentHandler,
         GetTemperatureIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,

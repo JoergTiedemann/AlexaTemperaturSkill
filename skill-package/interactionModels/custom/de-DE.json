@@ -50,6 +50,17 @@
         },
         {
           "slots": [],
+          "name": "GetTemperaturZeit",
+          "samples": [
+            "Zeit",
+            "Von wann ist die Temperatur",
+            "Von wann ist die Temperatur am Gartenhaus",
+            "Von wann ist die Temperatur von Gartenhaus",
+            "Wann wurde zuletzt gemessen"
+          ]
+        },
+        {
+          "slots": [],
           "name": "GetLuftfeuchtigkeit",
           "samples": [
             "Luftfeuchtigkeit",
