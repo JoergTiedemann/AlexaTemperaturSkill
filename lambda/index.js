@@ -31,7 +31,7 @@ const strings = {
       'NoIntentFound_error': 'Kein Handler für Intend {intentName} definert',
       'general_error': 'Sorry, es gab ein Problem mit dem was Du gesagt hast. Versuche es erneut.',
       'feuchtigkeit_message':'Die Luftfeuchtigkeit beträgt {feuchtigkeit} Prozent',
-      'messzeit_message':'Die Temperaturmessung wurde um {feuchtigkeit} Prozent durchgeführt',
+      'messzeit_message':'Die Temperaturmessung wurde am {datumswert} durchgeführt',
       'kommentarUeber30_message':[
         '',
         '<say-as interpret-as="interjection">puh</say-as><break time="200ms"/>echt heiss',
@@ -329,9 +329,7 @@ const GetTemperaturZeitIntentHandler = {
                 if (snapshot.exists()) {
                     const data = snapshot.val();
                     // speakOutput = `Die Temperatur beträgt ${data.aktuelleTemp} Grad`;
-                    let floatFeucht = parseFloat(data.Luftfeuchtigkeit);
-                    speakOutput =  handlerInput.t('feuchtigkeit_message',{feuchtigkeit: floatFeucht.toFixed(1)});
-                    console.log(`~~~~ Luftfeuchtigkeit:`,kommentar);
+                    speakOutput =  handlerInput.t('messzeit_message',{datumswert: data.Datumsstempel});
                     console.log(`~~~~ Temperaturzeit:`,data.Datumsstempel);
                     // if (kommentar)
                     // speakOutput = speakOutput + breaktime + kommentar;
