@@ -31,7 +31,7 @@ const strings = {
       'NoIntentFound_error': 'Kein Handler für Intend {intentName} definert',
       'general_error': 'Sorry, es gab ein Problem mit dem was Du gesagt hast. Versuche es erneut.',
       'feuchtigkeit_message':'Die Luftfeuchtigkeit beträgt {feuchtigkeit} Prozent',
-      'messzeit_message':'Die Temperaturmessung wurde am {datumswert} durchgeführt',
+      'messzeit_message':'Die Temperaturmessung wurde um {datumswert} durchgeführt',
       'kommentarUeber30_message':[
         '',
         '<say-as interpret-as="interjection">puh</say-as><break time="200ms"/>echt heiss',
