@@ -11,5 +11,11 @@ Zugangsdaten sind im Lambda hinterlegt und verschlüsselt
 **Hinweis:**  
 Die Console für die Ausgaben in der Lambda Funktion bekommt man om Browder der Developer Console im Codeeditor unter `CloudWatch Logs`und dort dann `Ireland` auswählen
 
+
+**Hinweis:**  
+Wenn ein commit und sync auf ES8266FirebaseConnector auf dem master branch durchgeführt wird, dann ist das auch im AWS repo aktuell und sofort scharf
+und auch im github repo AlexaTemperaturSkill im Masterbranch ist das dann aktuell und dort kann dann ein Release erstellt werden (aber nur für intere Zwecke weil released ist das Ding schon durch den Commit und Sync)
+
+
 **Hinweis**  
 Wenn beim Push der Codeeditor im Browser offen ist kommt dort eine Fehlermeldung das mit dem Branch was nicht stimmt. In diesem Fall den Codeeditor schliessen und den Skill erneut im Browser öffen
