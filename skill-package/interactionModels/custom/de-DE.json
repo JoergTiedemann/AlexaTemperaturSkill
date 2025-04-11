@@ -53,6 +53,11 @@
           "name": "GetTemperaturZeit",
           "samples": [
             "Zeit",
+            "Messzeit",
+            "Von wurde gemessen",
+            "Von wurde gemessen am Gartenhaus",
+            "Von wann ist die Messzeit",
+            "Wann ist die Messzeit",
             "Von wann ist die Temperatur",
             "Von wann ist die Temperatur am Gartenhaus",
             "Von wann ist die Temperatur von Gartenhaus",

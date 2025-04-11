@@ -19,15 +19,15 @@ const  breaktime = "<break time='800ms'/>";
 
 const strings = {
     'de-DE': {
-      'welcome_message': 'Willkommen zur Abfrage der Temperatur vom Gartenhaus. Du kannst Hallo oder Hilfe sagen. Was möchtest Du tun ?',
-      'help_message': 'Du kannst Wie ist die Temperatur sagen oder Wie ist die Temperatur von Gartenhaus oder wie ist die Temperatur! Wie kann ich helfen?',
+      'welcome_message': 'Willkommen zur Abfrage der Temperatur vom Gartenhaus. Du kannst Hilfe sagen um weitere Hilfe zu bekommen. Was möchtest Du tun ?',
+      'help_message': 'Du kannst Wie ist die Temperatur sagen oder Wie ist die Luftfeuchtigkeit von Gartenhaus oder Von wann ist ist die Temperatur! Wie kann ich helfen ?',
       'byebye_message': 'Auf Wiedersehen!',
       'generaltemperatur_message':'Es wurde nach der Temperatur gefragt',
       'generalfeuchtigkeit_message':'Es wurde nach der Luftfeuchtigkeit gefragt',
       'generalzeit_message':'Es wurde nach der Messzeit gefragt',
       'firenbasedocument_error': 'Dokument nicht gefunden.',
       'firenbasedatabase_error': 'Es gab ein Problem bei der Datenbankabfrage',
-      'fallback_message': 'Sorry, ich habe keine Ahnung. Versuche es erneut.',
+      'fallback_message': 'Sorry, ich habe keine Ahnung, den Text verstehe ich nicht. Versuche es erneut.',
       'NoIntentFound_error': 'Kein Handler für Intend {intentName} definert',
       'general_error': 'Sorry, es gab ein Problem mit dem was Du gesagt hast. Versuche es erneut.',
       'feuchtigkeit_message':'Die Luftfeuchtigkeit beträgt {feuchtigkeit} Prozent',
@@ -328,9 +328,17 @@ const GetTemperaturZeitIntentHandler = {
 
                 if (snapshot.exists()) {
                     const data = snapshot.val();
+                    let Zeitstempel = data.Datumsstempel;
+                    // Entferne die Sekunden aus dem Zeitstempel
+                    if (Zeitstempel.includes(':')) {
+                        const teile = Zeitstempel.split(' '); // Trenne Datum und Zeit
+                        const datum = teile[1]; // Datum bleibt unverändert
+                        const zeitOhneSekunden = teile[0].substring(0, teile[0].lastIndexOf(':')); // Zeit ohne Sekunden
+                        Zeitstempel = `${datum} ${zeitOhneSekunden}`; // Kombiniere Datum und Zeit ohne Sekunden
+                    }
                     // speakOutput = `Die Temperatur beträgt ${data.aktuelleTemp} Grad`;
-                    speakOutput =  handlerInput.t('messzeit_message',{datumswert: data.Datumsstempel});
-                    console.log(`~~~~ Temperaturzeit:`,data.Datumsstempel);
+                    speakOutput =  handlerInput.t('messzeit_message',{datumswert: Zeitstempel});
+                    console.log(`~~~~ Temperaturzeit:`,data.Zeitstempel);
                     // if (kommentar)
                     // speakOutput = speakOutput + breaktime + kommentar;
                     // Dienste deaktivieren
