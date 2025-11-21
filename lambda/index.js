@@ -526,10 +526,13 @@ function parseParameter(str,params) {
 }
 
 function formatTemperatureForSpeech(temp) {
+    // Zahl mit einer Nachkommastelle, Punkt durch Komma ersetzen
+    const formatted = temp.toFixed(1).replace('.', ',');
+
     if (temp < 0) {
-        return `<say-as interpret-as="cardinal">minus ${Math.abs(temp).toFixed(1)}</say-as>`;
+        return `<say-as interpret-as="cardinal">minus ${formatted}</say-as>`;
     } else {
-        return `<say-as interpret-as="cardinal">${temp.toFixed(1)}</say-as>`;
+        return `<say-as interpret-as="cardinal">${formatted}</say-as>`;
     }
 }
 
