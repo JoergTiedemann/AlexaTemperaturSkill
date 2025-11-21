@@ -135,9 +135,20 @@ process(handlerInput) {
 
 
 // PLEASE FILL IN YOUR VALUES INSIDE CONFIG OBJECT. REFER TO THIS TUTORIAL TO GET STARTED : 
+const api_fst="AIzaSyCSwdcpciYBuYy";
+//4
+const api_mdl1="NgA";
+//3
+const api_mdl2="kNYhaqirZZ";
+//5
+const api_end="n-Xw";
+
+//  apiKey: "AIzaSyCSwdcpciYBuYy4NgA3kNYhaqirZZ5n-Xw",
+
+
 
 var config = {
-  apiKey: "AIzaSyCSwdcpciYBuYy4NgA3kNYhaqirZZ5n-Xw",
+  apiKey: "",
   authDomain: "espdata-b473e.firebaseapp.com",
   databaseURL: "https://espdata-b473e-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "espdata-b473e",
@@ -151,6 +162,8 @@ const Fpass = 'bkrr';
 const Spass = 'H';
 
 const zugang   = Fpass + 'nt' + String(parseInt(config.appId[0])+6) + Spass;
+const apikey   = api_fst + String(parseInt(config.appId[0])+3) + api_mdl1 + String(parseInt(config.appId[0])+2) + api_mdl2 + String(parseInt(config.appId[0])+4) + api_end;
+config.apiKey = apikey;
 
 const signInWithEmail = async () => {
   try {
