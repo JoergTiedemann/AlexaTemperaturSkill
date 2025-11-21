@@ -24,7 +24,7 @@ const  breaktime = "<break time='800ms'/>";
 const strings = {
     'de-DE': {
       'welcome_message': 'Willkommen zur Abfrage der Temperatur vom Gartenhaus. Du kannst Hilfe sagen um weitere Hilfe zu bekommen. Was möchtest Du tun ?',
-      'help_message': 'Du kannst Wie ist die Temperatur sagen oder Wie ist die Luftfeuchtigkeit von Gartenhaus oder Von wann ist ist die Temperatur! Wie kann ich helfen ?',
+      'help_message': 'Du kannst Wie ist die Temperatur sagen oder Wie ist die Luftfeuchtigkeit von Gartenhaus oder Von wann ist ist die Temperatur oder Frag Gartenhaus nach der Version ! Wie kann ich helfen ?',
       'byebye_message': 'Auf Wiedersehen!',
       'generaltemperatur_message':'Es wurde nach der Temperatur gefragt',
       'generalfeuchtigkeit_message':'Es wurde nach der Luftfeuchtigkeit gefragt',
@@ -577,7 +577,7 @@ function randomItemFromArray(messages,params){
 
 function getPackageVersion() {
   try {
-    const pkgPath = path.join(__dirname, '..', 'package.json');
+    const pkgPath = '/var/task/package.json';
     const data = fs.readFileSync(pkgPath, 'utf8');
     const pkg = JSON.parse(data);
     const strversion = pkg.version || 'unknown';
@@ -585,29 +585,6 @@ function getPackageVersion() {
 
   } catch (e) {
     console.error('Fehler beim Lesen von package.json:', e);
-    return `<say-as interpret-as="cardinal">Der Skill hat eine unbekannte Version</say-as>`;
+    return `Die Version des Skills konnte nicht ausgelesen werden`;
   }
 }
-
-function getPackageVersion() {
-  const candidates = [
-    '/var/task/package.json'
-  ];
-  for (const p of candidates) {
-    try {
-      const data = fs.readFileSync(p, 'utf8');
-      const pkg = JSON.parse(data);
-      if (pkg && pkg.version){
-            const strversion = pkg.version;
-            console.error('package.json gefunden:', p,' Version:', strversion);
-            return `<say-as interpret-as="cardinal">Der Skill hat die Version ${strversion}</say-as>`;
-      }
-    } catch (err) {
-      // Datei nicht gefunden oder ungültig -> nächster Kandidat
-    }
-  }
-  // letzter Fallback: Umgebungsvariable (setze diese in Lambda-Konfiguration, wenn package.json nicht deployed wird)
-  console.error('Fehler beim Suchen der package.json !');
-  return `<say-as interpret-as="cardinal">Der Skill hat eine unbekannte Version</say-as>`;
-}
-// ...existing code...

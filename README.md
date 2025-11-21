@@ -14,6 +14,9 @@ Die AWS Developer Console errreicht man unter https://developer.amazon.com/alexa
 
 
 **Hinweis:**  
+Wenn eine neue Version gemacht wird, dann muss diese Version in der package.json eingetragen werden, weil die Funktion GetVersion diese ausliest und zur Ausgabe bringt.
+
+**Hinweis:**  
 Die Console für die Ausgaben in der Lambda Funktion bekommt man vom Browser der Developer Console im Codeeditor unter `CloudWatch Logs`und dort dann `Ireland` auswählen
 
 
