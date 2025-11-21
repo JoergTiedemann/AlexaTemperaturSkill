@@ -4,12 +4,14 @@ Das Ding wird vom AWS Git repo mit fetch geholt und beim Push auf Github und auf
 Das AWS Repo liegt hier  
 https://git-codecommit.us-east-1.amazonaws.com/v1/repos/1660317e-68f9-497b-960a-d00f1c5e5944
 
+Die AWS Developer Console errreicht man unter https://developer.amazon.com/alexa/console/ask
+
 Der Deploymentprozess nach ändern der Lambda Funktionen erfolgt automatisch  
 Der Build des Alexa Skills muss manuell durchgeführt werden, das muss immer gemacht werden wenn Phrasen den Interaction Models was geändert wurde 
 Zugangsdaten sind im Lambda hinterlegt und verschlüsselt
 
 **Hinweis:**  
-Die Console für die Ausgaben in der Lambda Funktion bekommt man om Browder der Developer Console im Codeeditor unter `CloudWatch Logs`und dort dann `Ireland` auswählen
+Die Console für die Ausgaben in der Lambda Funktion bekommt man vom Browser der Developer Console im Codeeditor unter `CloudWatch Logs`und dort dann `Ireland` auswählen
 
 
 **Hinweis:**  

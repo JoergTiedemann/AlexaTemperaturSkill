@@ -52,7 +52,7 @@ const strings = {
       ], 
       'kommentar10bis20_message':[
         '',
-        'nicht wirklich prickelend',
+        'nicht wirklich prickelnd',
         'geht gerade noch so',
         'ein bischen ungemütlich',
         'immerhin friert es nicht',
@@ -67,14 +67,19 @@ const strings = {
         '<say-as interpret-as="interjection">puh</say-as><break time="200ms"/>echt ungemütlich',
         'kurz vor Bodenfrost',
         'Erkältungswetter',
+        'nicht so toll',
         ''
       ], 
       'kommentarUnterNull_message':[
         '',
         '<say-as interpret-as="interjection">puh</say-as>',
+        'Schweinekalt',
+        'Arschkalt',
+        'Saukalt',
         'Saukalt draussen',
         'echt kalt',
         'bitter kalt',
+        'da kriegt man Frostbeulen',
         'da friert einem der Arsch ab',
         ''
       ], 
@@ -216,7 +221,10 @@ const GetTemperatureIntentHandler = {
                     const data = snapshot.val();
                     // speakOutput = `Die Temperatur beträgt ${data.aktuelleTemp} Grad`;
                     let floatTemp = parseFloat(data.aktuelleTemp);
-                    speakOutput =  randomItemFromArray(handlerInput.t('temperatur_message'),{temperatur: floatTemp.toFixed(1)});
+                    // speakOutput =  randomItemFromArray(handlerInput.t('temperatur_message'),{temperatur: floatTemp.toFixed(1)});
+                    const spokenTemp = formatTemperatureForSpeech(floatTemp);
+                    speakOutput = randomItemFromArray(handlerInput.t('temperatur_message'),{ temperatur: spokenTemp });
+
                     if (floatTemp >= 30)
                         kommentar = randomItemFromArray(handlerInput.t('kommentarUeber30_message'));
                     else if (floatTemp >= 20)
@@ -517,6 +525,13 @@ function parseParameter(str,params) {
     return string;
 }
 
+function formatTemperatureForSpeech(temp) {
+    if (temp < 0) {
+        return `<say-as interpret-as="cardinal">minus ${Math.abs(temp).toFixed(1)}</say-as>`;
+    } else {
+        return `<say-as interpret-as="cardinal">${temp.toFixed(1)}</say-as>`;
+    }
+}
 
 function randomItemFromArray(messages,params){
     const index = Math.floor(Math.random() * messages.length);
