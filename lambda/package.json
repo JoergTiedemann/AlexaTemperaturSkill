@@ -1,5 +1,5 @@
 {
-  "name": "ESP32 Firebase Connector",
+  "name": "ESP32FirebaseConnector",
   "version": "1.5.0",
   "description": "Alexaskill zur Abfrage der Temperatur vom Gartenhaus",
   "main": "index.js",
