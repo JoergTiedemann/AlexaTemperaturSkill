@@ -75,6 +75,17 @@
             "Wie ist die Luftfeuchtigkeitvon Gartenhaus",
             "Wie feucht ist es draussen"
           ]
+        },
+        {
+          "slots": [],
+          "name": "GetVersion",
+          "samples": [
+            "Version",
+            "Wie ist die Version",
+            "Wie ist die Versipon vom Gartenhausskill",
+            "Wie ist die Gartenhausversion",
+            "Wie ist die Version des Skill"
+          ]
         }
       ],
       "types": [

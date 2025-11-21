@@ -14,6 +14,10 @@ const firebase = require('firebase/app');
 
 require('firebase/database');
 require('firebase/auth');
+const fs = require('fs');
+const path = require('path');
+
+
 
 const  breaktime = "<break time='800ms'/>";
 
@@ -398,6 +402,26 @@ const GetTemperaturZeitIntentHandler = {
             */
 
 
+
+const GetVersionIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetVersion';
+    },
+    async handle(handlerInput) {
+
+        let speakOutput = getPackageVersion();
+        console.log(`~~~~ GetVersionIntentHandler wurde aufgerufen`);
+        console.log('Antwort:',speakOutput);
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            //.reprompt(speakOutput)
+            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .getResponse();
+    }
+};
+
+
 const HelpIntentHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -509,6 +533,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         GetLuftfeuchtigkeitIntentHandler,
         GetTemperaturZeitIntentHandler,
         GetTemperatureIntentHandler,
+        GetVersionIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
         FallbackIntentHandler,
@@ -548,3 +573,19 @@ function randomItemFromArray(messages,params){
     console.log(`~~~~ randomItemFromArray index:`,index,` message:`,messages[index]);
     return parseParameter(messages[index],params);   
 }
+
+
+function getPackageVersion() {
+  try {
+    const pkgPath = path.join(__dirname, '..', 'package.json');
+    const data = fs.readFileSync(pkgPath, 'utf8');
+    const pkg = JSON.parse(data);
+    const strversion = pkg.version || 'unknown';
+    return `<say-as interpret-as="cardinal">Der Skill hat die Version ${strversion}</say-as>`;
+
+  } catch (e) {
+    console.error('Fehler beim Lesen von package.json:', e);
+    return `<say-as interpret-as="cardinal">Der Skill hat eine unbekannte Version</say-as>`;
+  }
+}
+// ...existing code...
