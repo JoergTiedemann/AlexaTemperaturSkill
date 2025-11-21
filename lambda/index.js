@@ -588,4 +588,29 @@ function getPackageVersion() {
     return `<say-as interpret-as="cardinal">Der Skill hat eine unbekannte Version</say-as>`;
   }
 }
+
+function getPackageVersion() {
+  const candidates = [
+    path.join(process.cwd(), 'package.json'),   // /var/task/package.json bei Lambda
+    path.join(__dirname, 'package.json'),
+    path.join(__dirname, '..', 'package.json'),
+    '/var/task/package.json'
+  ];
+  for (const p of candidates) {
+    try {
+      const data = fs.readFileSync(p, 'utf8');
+      const pkg = JSON.parse(data);
+      if (pkg && pkg.version){
+            const strversion = pkg.version;
+            console.error('package.json gefunden:', p,' Version:', strversion);
+            return `<say-as interpret-as="cardinal">Der Skill hat die Version ${strversion}</say-as>`;
+      }
+    } catch (err) {
+      // Datei nicht gefunden oder ungültig -> nächster Kandidat
+    }
+  }
+  // letzter Fallback: Umgebungsvariable (setze diese in Lambda-Konfiguration, wenn package.json nicht deployed wird)
+  console.error('Fehler beim Suchen der package.json !');
+  return `<say-as interpret-as="cardinal">Der Skill hat eine unbekannte Version</say-as>`;
+}
 // ...existing code...
