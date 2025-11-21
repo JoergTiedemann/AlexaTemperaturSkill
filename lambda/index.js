@@ -591,9 +591,6 @@ function getPackageVersion() {
 
 function getPackageVersion() {
   const candidates = [
-    path.join(process.cwd(), 'package.json'),   // /var/task/package.json bei Lambda
-    path.join(__dirname, 'package.json'),
-    path.join(__dirname, '..', 'package.json'),
     '/var/task/package.json'
   ];
   for (const p of candidates) {
