@@ -134,18 +134,12 @@ process(handlerInput) {
  
 
 
-// PLEASE FILL IN YOUR VALUES INSIDE CONFIG OBJECT. REFER TO THIS TUTORIAL TO GET STARTED : 
+// PLEASE FILL IN YOUR VALUES INSIDE CONFIG OBJECT. REFER TO THIS TUTORIAL TO GET STARTED :
+// API Key nicht mehr komplett hier im Code hinterlegt 
 const api_fst="AIzaSyCSwdcpciYBuYy";
-//4
 const api_mdl1="NgA";
-//3
 const api_mdl2="kNYhaqirZZ";
-//5
 const api_end="n-Xw";
-
-//  apiKey: "AIzaSyCSwdcpciYBuYy4NgA3kNYhaqirZZ5n-Xw",
-
-
 
 var config = {
   apiKey: "",
