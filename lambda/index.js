@@ -236,16 +236,16 @@ const GetTemperatureIntentHandler = {
                     const spokenTemp = formatTemperatureForSpeech(floatTemp);
                     speakOutput = randomItemFromArray(handlerInput.t('temperatur_message'),{ temperatur: spokenTemp });
 
-                    if (floatTemp >= 30)
-                        kommentar = randomItemFromArray(handlerInput.t('kommentarUeber30_message'));
-                    else if (floatTemp >= 20)
-                        kommentar = randomItemFromArray(handlerInput.t('kommentar20bis30_message'));
-                    else if (floatTemp >= 10)
-                        kommentar = randomItemFromArray(handlerInput.t('kommentar10bis20_message'));
-                    else if (floatTemp >= 0)
-                        kommentar = randomItemFromArray(handlerInput.t('kommentarNullbis10_message'));
-                    else
-                        kommentar = randomItemFromArray(handlerInput.t('kommentarUnterNull_message'));
+                    // if (floatTemp >= 30)
+                    //     kommentar = randomItemFromArray(handlerInput.t('kommentarUeber30_message'));
+                    // else if (floatTemp >= 20)
+                    //     kommentar = randomItemFromArray(handlerInput.t('kommentar20bis30_message'));
+                    // else if (floatTemp >= 10)
+                    //     kommentar = randomItemFromArray(handlerInput.t('kommentar10bis20_message'));
+                    // else if (floatTemp >= 0)
+                    //     kommentar = randomItemFromArray(handlerInput.t('kommentarNullbis10_message'));
+                    // else
+                    //     kommentar = randomItemFromArray(handlerInput.t('kommentarUnterNull_message'));
                     // Beispiel:
                     const text = "Verdammt, das ist echt kacke und arschkalt und scheißkalt und scheißenkalt !";
                     kommentar = sanitizeTextForAlexa(text);
@@ -601,8 +601,10 @@ function sanitizeTextForAlexa(inputText) {
     const regex = new RegExp(word, "gi"); // sucht Wort, egal ob groß/klein
     output = output.replace(regex, replacement);
   }
+    console.log(`~~~~ phoneme:`,output);
+
   // Rückgabe als vollständiger SSML-String
-  return `<speak>${output}</speak>`;
+  return `${output}`;
 }
 
 
