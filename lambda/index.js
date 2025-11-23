@@ -55,7 +55,6 @@ const strings = {
         ''
       ], 
       'kommentar10bis20_message':[
-        '',
         'nicht wirklich prickelnd',
         'mist</say-as><break time="200ms"/> nicht wirklich prickelnd',
         'geht gerade noch so',
@@ -65,10 +64,9 @@ const strings = {
         ''
       ], 
       'kommentarNullbis10_message':[
-        '',
         '<say-as interpret-as="interjection">puh</say-as>',
         'Schmuddelwetter',
-        'mist</say-as><break time="200ms"/> war ist was anderes',
+        'mist</say-as><break time="200ms"/>warm ist was anderes',
         'naßkalt',
         'scheißkalt',
         'verdammt kalt',
@@ -76,14 +74,14 @@ const strings = {
         'kurz vor Bodenfrost',
         'Erkältungswetter',
         'nicht so toll',
+        'kacke</say-as><break time="200ms"/>nicht so toll',
         ''
       ], 
       'kommentarUnterNull_message':[
-        '',
         '<say-as interpret-as="interjection">puh</say-as>',
         'Schweinekalt',
-        'Scheißenkalt',
         'Scheißkalt',
+        'Scheißenkalt',
         'Arschkalt',
         'Saukalt',
         'Saukalt draussen',
@@ -598,7 +596,7 @@ function sanitizeTextForAlexa(inputText) {
     "arschkalt": '<phoneme alphabet="ipa" ph="aʁʃ">Arschkalt</phoneme>',
     "scheiße": '<phoneme alphabet="ipa" ph="ˈʃaɪ̯sə">Scheiße</phoneme>',
     "scheißkalt": '<phoneme alphabet="ipa" ph="ˈʃaɪ̯skalt">Scheißkalt</phoneme>',
-    "scheißenkalt": '<phoneme alphabet="ipa" ph="ˈʃaɪ̯sənkalt">Scheißenkalt</phoneme>',
+    "scheißenkalt": '<phoneme alphabet="ipa" ph="ˈʃaɪ̯snkalt">Scheißenkalt</phoneme>',
     "kacke": '<phoneme alphabet="ipa" ph="ˈkakə">Kacke</phoneme>',
     "mist": '<phoneme alphabet="ipa" ph="mɪst">Mist</phoneme>',
     "verdammt": '<phoneme alphabet="ipa" ph="fɛɐ̯ˈdamt">Verdammt</phoneme>'
