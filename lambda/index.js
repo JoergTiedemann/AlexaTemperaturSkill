@@ -246,10 +246,10 @@ const GetTemperatureIntentHandler = {
                         kommentar = randomItemFromArray(handlerInput.t('kommentarNullbis10_message'));
                     else
                         kommentar = randomItemFromArray(handlerInput.t('kommentarUnterNull_message'));
-                    console.log(`~~~~ Kommentar:`,kommentar);
                     // Beispiel:
                     const text = "Verdammt, das ist echt kacke und arschkalt und scheißkalt und scheißenkalt !";
-                    const kommentar = sanitizeTextForAlexa(text);
+                    kommentar = sanitizeTextForAlexa(text);
+                    console.log(`~~~~ Kommentar:`,kommentar);
 
                     if (kommentar)
                         speakOutput = speakOutput + breaktime + kommentar;
