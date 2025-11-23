@@ -57,6 +57,7 @@ const strings = {
       'kommentar10bis20_message':[
         '',
         'nicht wirklich prickelnd',
+        'mist</say-as><break time="200ms"/> nicht wirklich prickelnd',
         'geht gerade noch so',
         'ein bischen ungemütlich',
         'immerhin friert es nicht',
@@ -67,7 +68,10 @@ const strings = {
         '',
         '<say-as interpret-as="interjection">puh</say-as>',
         'Schmuddelwetter',
+        'mist</say-as><break time="200ms"/> war ist was anderes',
         'naßkalt',
+        'scheißkalt',
+        'verdammt kalt',
         '<say-as interpret-as="interjection">puh</say-as><break time="200ms"/>echt ungemütlich',
         'kurz vor Bodenfrost',
         'Erkältungswetter',
@@ -78,6 +82,8 @@ const strings = {
         '',
         '<say-as interpret-as="interjection">puh</say-as>',
         'Schweinekalt',
+        'Scheißenkalt',
+        'Scheißkalt',
         'Arschkalt',
         'Saukalt',
         'Saukalt draussen',
@@ -217,6 +223,7 @@ const GetTemperatureIntentHandler = {
     async handle(handlerInput) {
         let speakOutput = handlerInput.t('generaltemperatur_message');
         let kommentar = "";
+        let text = "";
         console.log(`~~~~ GetTemperatureIntentHandler wurde aufgerufen`);
         firebase.initializeApp(config);
         const auth = firebase.auth();
@@ -236,18 +243,19 @@ const GetTemperatureIntentHandler = {
                     const spokenTemp = formatTemperatureForSpeech(floatTemp);
                     speakOutput = randomItemFromArray(handlerInput.t('temperatur_message'),{ temperatur: spokenTemp });
 
-                    // if (floatTemp >= 30)
-                    //     kommentar = randomItemFromArray(handlerInput.t('kommentarUeber30_message'));
-                    // else if (floatTemp >= 20)
-                    //     kommentar = randomItemFromArray(handlerInput.t('kommentar20bis30_message'));
-                    // else if (floatTemp >= 10)
-                    //     kommentar = randomItemFromArray(handlerInput.t('kommentar10bis20_message'));
-                    // else if (floatTemp >= 0)
-                    //     kommentar = randomItemFromArray(handlerInput.t('kommentarNullbis10_message'));
-                    // else
-                    //     kommentar = randomItemFromArray(handlerInput.t('kommentarUnterNull_message'));
+                    if (floatTemp >= 30)
+                        text = randomItemFromArray(handlerInput.t('kommentarUeber30_message'));
+                    else if (floatTemp >= 20)
+                        text = randomItemFromArray(handlerInput.t('kommentar20bis30_message'));
+                    else if (floatTemp >= 10)
+                        text = randomItemFromArray(handlerInput.t('kommentar10bis20_message'));
+                    else if (floatTemp >= 0)
+                        text = randomItemFromArray(handlerInput.t('kommentarNullbis10_message'));
+                    else
+                        text = randomItemFromArray(handlerInput.t('kommentarUnterNull_message'));
                     // Beispiel:
-                    const text = "Verdammt, das ist echt kacke und arschkalt und scheißkalt und scheißenkalt !";
+                    // const text = "Verdammt, das ist echt kacke und arschkalt und scheißkalt und scheißenkalt !";
+                    // geblockte Wörter werden hier umgewandelt
                     kommentar = sanitizeTextForAlexa(text);
                     console.log(`~~~~ Kommentar:`,kommentar);
 
@@ -585,25 +593,26 @@ function randomItemFromArray(messages,params){
  */
 function sanitizeTextForAlexa(inputText) {
   // Wörterliste mit IPA-Phonemen
-  const forbiddenWords = {
+    const forbiddenWords = {
     "arsch": '<phoneme alphabet="ipa" ph="aʁʃ">Arsch</phoneme>',
-    "arschkalt": '<phoneme alphabet="ipa" ph="aʁʃkalt">Arschkalt</phoneme>',
-    "scheißkalt": '<phoneme alphabet="ipa" ph="ʃaɪ̯skalt">Scheißkalt</phoneme>',
-    "scheißenkalt": '<phoneme alphabet="ipa" ph="ʃaɪ̯sənkalt">Scheißenkalt</phoneme>',
+    "arschkalt": '<phoneme alphabet="ipa" ph="aʁʃ">Arschkalt</phoneme>',
+    "scheiße": '<phoneme alphabet="ipa" ph="ˈʃaɪ̯sə">Scheiße</phoneme>',
+    "scheißkalt": '<phoneme alphabet="ipa" ph="ˈʃaɪ̯skalt">Scheißkalt</phoneme>',
+    "scheißenkalt": '<phoneme alphabet="ipa" ph="ˈʃaɪ̯sənkalt">Scheißenkalt</phoneme>',
     "kacke": '<phoneme alphabet="ipa" ph="ˈkakə">Kacke</phoneme>',
     "mist": '<phoneme alphabet="ipa" ph="mɪst">Mist</phoneme>',
     "verdammt": '<phoneme alphabet="ipa" ph="fɛɐ̯ˈdamt">Verdammt</phoneme>'
     // Liste beliebig erweiterbar
-  };
+    };
   let output = inputText;
   // Ersetzt jedes Wort durch das SSML-Phoneme
   for (const [word, replacement] of Object.entries(forbiddenWords)) {
     const regex = new RegExp(word, "gi"); // sucht Wort, egal ob groß/klein
     output = output.replace(regex, replacement);
   }
-    console.log(`~~~~ phoneme:`,output);
+    // console.log(`~~~~ phoneme:`,output);
 
-  // Rückgabe als vollständiger SSML-String
+  // Rückgabe als SSML-String
   return `${output}`;
 }
 
