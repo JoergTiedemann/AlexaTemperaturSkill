@@ -247,8 +247,12 @@ const GetTemperatureIntentHandler = {
                     else
                         kommentar = randomItemFromArray(handlerInput.t('kommentarUnterNull_message'));
                     console.log(`~~~~ Kommentar:`,kommentar);
+                    // Beispiel:
+                    const text = "Verdammt, das ist echt kacke und arschkalt und scheißkalt und scheißenkalt !";
+                    const kommentar = sanitizeTextForAlexa(text);
+
                     if (kommentar)
-                    speakOutput = speakOutput + breaktime + kommentar;
+                        speakOutput = speakOutput + breaktime + kommentar;
                     // Dienste deaktivieren
                     await auth.signOut();
                     //snapshot.off();
@@ -572,6 +576,33 @@ function randomItemFromArray(messages,params){
     const index = Math.floor(Math.random() * messages.length);
     console.log(`~~~~ randomItemFromArray index:`,index,` message:`,messages[index]);
     return parseParameter(messages[index],params);   
+}
+
+
+/**
+ * Wandelt einen Eingabetext so um, dass Alexa
+ * verbotene oder gefilterte Wörter mit SSML-Phonemen ausspricht.
+ */
+function sanitizeTextForAlexa(inputText) {
+  // Wörterliste mit IPA-Phonemen
+  const forbiddenWords = {
+    "arsch": '<phoneme alphabet="ipa" ph="aʁʃ">Arsch</phoneme>',
+    "arschkalt": '<phoneme alphabet="ipa" ph="aʁʃkalt">Arschkalt</phoneme>',
+    "scheißkalt": '<phoneme alphabet="ipa" ph="ʃaɪ̯skalt">Scheißkalt</phoneme>',
+    "scheißenkalt": '<phoneme alphabet="ipa" ph="ʃaɪ̯sənkalt">Scheißenkalt</phoneme>',
+    "kacke": '<phoneme alphabet="ipa" ph="ˈkakə">Kacke</phoneme>',
+    "mist": '<phoneme alphabet="ipa" ph="mɪst">Mist</phoneme>',
+    "verdammt": '<phoneme alphabet="ipa" ph="fɛɐ̯ˈdamt">Verdammt</phoneme>'
+    // Liste beliebig erweiterbar
+  };
+  let output = inputText;
+  // Ersetzt jedes Wort durch das SSML-Phoneme
+  for (const [word, replacement] of Object.entries(forbiddenWords)) {
+    const regex = new RegExp(word, "gi"); // sucht Wort, egal ob groß/klein
+    output = output.replace(regex, replacement);
+  }
+  // Rückgabe als vollständiger SSML-String
+  return `<speak>${output}</speak>`;
 }
 
 
