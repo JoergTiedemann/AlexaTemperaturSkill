@@ -616,6 +616,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         GetLuftfeuchtigkeitIntentHandler,
         GetTemperaturZeitIntentHandler,
         GetTemperatureIntentHandler,
+        GetSolarIntentHandler,
         GetVersionIntentHandler,
         HelpIntentHandler,
         CancelAndStopIntentHandler,
