@@ -422,11 +422,11 @@ const GetSolarIntentHandler = {
                     // speakOutput =  randomItemFromArray(handlerInput.t('temperatur_message'),{temperatur: floatTemp.toFixed(1)});
                     const spokenSoCGartenhaus = formatSpeicherstandForSpeech(floatSoCGartenhaus);
                     const spokenSoCGarage = formatSpeicherstandForSpeech(floatSoCGarage);
-                    speakOutput = `Der Speicher Garage ist zu ${spokenSoCGarage} Prozent gefüllt und der Gartenhaus-Speicher zu ${spokenSoCGartenhaus} Prozent`;
+                    speakOutput = `Der Solarspeicher in der Garage ist zu ${spokenSoCGarage} Prozent gefüllt und der Gartenhausspeicher zu ${spokenSoCGartenhaus} Prozent. `;
                     // speakOutput = randomItemFromArray(handlerInput.t('temperatur_message'),{ temperatur: spokenTemp });
 
                     if (floatSoCGartenhaus < 50)
-                         text = `Für Waschmaschine oder Geschirrspüler ist das zu wenig, da sollten das schon mindestens 50 Prozent sein`;
+                         text = `Für Waschmaschine oder Geschirrspüler ist das zu wenig, da sollten das schon mindestens 50 Prozent sein, also warte noch etwas`;
                     else if (floatSoCGartenhaus >= 50)
                          text = `Das reicht um Waschmaschine oder Geschirrspüler anzustellen, aber nicht beide gleichzeitig`;
                     // Beispiel:

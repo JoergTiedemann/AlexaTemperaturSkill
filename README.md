@@ -24,7 +24,14 @@ Die Console für die Ausgaben in der Lambda Funktion bekommt man vom Browser der
 Wenn ein commit und sync auf Branch ES8266FirebaseConnector auf dem master branch durchgeführt wird, dann ist das auch im AWS repo aktuell und sofort scharf
 und auch im github repo AlexaTemperaturSkill im Masterbranch ist das dann aktuell und dort kann dann ein Release erstellt werden (aber nur für intere Zwecke weil released ist das Ding schon durch den Commit und Sync)
 Es gubt also keinen klassischen Development Branch
-es ist aber unklar was der dev branch istr
+Es ist aber unklar was der dev branch ist im Alexa Repo ist.
+Wichtig ist das bei Änderungen an den Phrasen des Interaction Models, dieses zuerst in der Konsole gemacht werden muss und dann erst holen wir uns den aktuellen Branch und ändern den Code geändert, sonst kriegen wir probleme weil der master Branch vor dem dev Branch liegt. Wenn das passiert habe ich das wie folgt wieder  hinbekommen (unter Zuhilfenahme von Copilot):
+```  
+git checkout master
+git merge dev
+git push origin master
+git push
+```
 
 **Hinweis**  
 Wenn beim Push der Codeeditor im Browser offen ist kommt dort eine Fehlermeldung das mit dem Branch was nicht stimmt. In diesem Fall den Codeeditor schliessen und den Skill erneut im Browser öffen
