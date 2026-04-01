@@ -1,6 +1,6 @@
 {
   "name": "esp32firebaseconnector",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "Alexaskill zur Abfrage der Temperatur vom Gartenhaus",
   "main": "index.js",
   "scripts": {

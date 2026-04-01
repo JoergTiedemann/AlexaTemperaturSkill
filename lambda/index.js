@@ -394,6 +394,80 @@ const GetTemperaturZeitIntentHandler = {
     }
 };
 
+const GetSolarIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GetSolarspeicher';
+    },
+    async handle(handlerInput) {
+        let speakOutput = handlerInput.t('generaltemperatur_message');
+        let kommentar = "";
+        let text = "";
+        console.log(`~~~~ GetSolarIntentHandler wurde aufgerufen`);
+        firebase.initializeApp(config);
+        const auth = firebase.auth();
+        const database = firebase.database();
+        try
+        {
+           // await signInWithEmail();
+            await auth.signInWithEmailAndPassword(email+'@gmx.de', zugang);
+            console.log(`~~~~ firebase goOnline erfolgt`);
+            const snapshot = await database.ref('/Stromzaehler/SunlitStatus').once('value');
+
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    // speakOutput = `Die Temperatur beträgt ${data.aktuelleTemp} Grad`;
+                    let floatSoCGarage = parseFloat(data.aktSoCGarage);
+                    let floatSoCGartenhaus = parseFloat(data.aktSoC);
+                    // speakOutput =  randomItemFromArray(handlerInput.t('temperatur_message'),{temperatur: floatTemp.toFixed(1)});
+                    const spokenSoCGartenhaus = formatSpeicherstandForSpeech(floatSoCGartenhaus);
+                    const spokenSoCGarage = formatSpeicherstandForSpeech(floatSoCGarage);
+                    speakOutput = `Der Speicher Garage ist zu ${spokenSoCGarage} Prozent gefüllt, der Gartenhaus-Speicher ist zu ${spokenSoCGartenhaus} Prozent gefüllt`;
+                    // speakOutput = randomItemFromArray(handlerInput.t('temperatur_message'),{ temperatur: spokenTemp });
+
+                    // if (floatTemp >= 30)
+                    //     text = randomItemFromArray(handlerInput.t('kommentarUeber30_message'));
+                    // else if (floatTemp >= 20)
+                    //     text = randomItemFromArray(handlerInput.t('kommentar20bis30_message'));
+                    // else if (floatTemp >= 10)
+                    //     text = randomItemFromArray(handlerInput.t('kommentar10bis20_message'));
+                    // else if (floatTemp >= 0)
+                    //     text = randomItemFromArray(handlerInput.t('kommentarNullbis10_message'));
+                    // else
+                    //     text = randomItemFromArray(handlerInput.t('kommentarUnterNull_message'));
+                    // Beispiel:
+                    // const text = "Verdammt, das ist echt kacke und arschkalt und scheißkalt und scheißenkalt !";
+                    // geblockte Wörter werden hier umgewandelt
+                    // kommentar = sanitizeTextForAlexa(text);
+                    // console.log(`~~~~ Kommentar:`,kommentar);
+
+                    // if (kommentar)
+                    //     speakOutput = speakOutput + breaktime + kommentar;
+                    // Dienste deaktivieren
+                    await auth.signOut();
+                    //snapshot.off();
+                    firebase.app().delete();
+                } else {
+                    speakOutput = handlerInput.t('firebasedocument_error');
+                }
+        //await auth.signOut();
+            console.log(`~~~~ firebase goOffline erfolgt`);
+        }
+        catch(e){
+            console.log("~~~~ Catch Excetion logs here: ",e);
+            speakOutput = handlerInput.t('firebasedatabse_error');
+        }
+
+
+        console.log('Antwort:',speakOutput);
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            //.reprompt(speakOutput)
+            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .getResponse();
+    }
+};
+
 
 
               /*          console.log(`~~~~  schreiben start`);
@@ -576,6 +650,18 @@ function formatTemperatureForSpeech(temp) {
         return `<say-as interpret-as="cardinal">${formatted}</say-as>`;
     // }
 }
+
+function formatSpeicherstandForSpeech(temp) {
+    // Zahl mit einer Nachkommastelle, Punkt durch Komma ersetzen
+    const formatted = temp.toFixed(1).replace('.', ',');
+
+    // if (temp < 0) {
+    //     return `<say-as interpret-as="cardinal">minus ${formatted}</say-as>`;
+    // } else {
+        return `<say-as interpret-as="cardinal">${formatted}</say-as>`;
+    // }
+}
+
 
 function randomItemFromArray(messages,params){
     const index = Math.floor(Math.random() * messages.length);

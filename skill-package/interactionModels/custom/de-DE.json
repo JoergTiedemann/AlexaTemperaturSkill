@@ -78,6 +78,21 @@
         },
         {
           "slots": [],
+          "name": "GetSolarspeicher",
+          "samples": [
+            "Speicherstand",
+            "Solaranlage",
+            "Wie ist der Speicherstand",
+            "Wie ist der Solarspeicherstand",
+            "Wieviel ist im Speicher",
+            "Wieviel ist im Solarspeicher",
+            "Wie ist der Speicherstand von Gartenhaus",
+            "Wie ist der Speicherstand von Solaranlage",
+            "Wie hoch ist der Speicherstand"
+          ]
+        },
+        {
+          "slots": [],
           "name": "GetVersion",
           "samples": [
             "Version",
