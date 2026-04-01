@@ -36,6 +36,9 @@ const strings = {
       'general_error': 'Sorry, es gab ein Problem mit dem was Du gesagt hast. Versuche es erneut.',
       'feuchtigkeit_message':'Die Luftfeuchtigkeit beträgt {feuchtigkeit} Prozent',
       'messzeit_message':'Die Temperatur wurde um {datumswert} gemessen',
+      'speicher_message':'Der Solarspeicher in der Garage ist zu {Garage} Prozent gefüllt und der Gartenhausspeicher zu ${Gartenhaus} Prozent.',
+      'below50prozent_comment':`Für Waschmaschine oder Geschirrspüler ist das zu wenig, da sollten das schon mindestens 50 Prozent sein, also warte noch etwas`,
+      'above50prozent_comment':`Das reicht um Waschmaschine oder Geschirrspüler anzustellen, aber nicht beide gleichzeitig`,
       'kommentarUeber30_message':[
         '',
         '<say-as interpret-as="interjection">puh</say-as><break time="200ms"/>echt heiss',
@@ -362,7 +365,7 @@ const GetTemperaturZeitIntentHandler = {
                         const teile = Zeitstempel.split(' '); // Trenne Datum und Zeit
                         const datum = teile[1]; // Datum bleibt unverändert
                         const zeitOhneSekunden = teile[0].substring(0, teile[0].lastIndexOf(':')); // Zeit ohne Sekunden
-                        Zeitstempel = `${datum} ${zeitOhneSekunden}`; // Kombiniere Datum und Zeit ohne Sekunden
+                        Zeitstempel = `${zeitOhneSekunden} am ${datum}`; // Kombiniere Datum und Zeit ohne Sekunden
                     }
                     // speakOutput = `Die Temperatur beträgt ${data.aktuelleTemp} Grad`;
                     speakOutput =  handlerInput.t('messzeit_message',{datumswert: Zeitstempel});
@@ -422,13 +425,14 @@ const GetSolarIntentHandler = {
                     // speakOutput =  randomItemFromArray(handlerInput.t('temperatur_message'),{temperatur: floatTemp.toFixed(1)});
                     const spokenSoCGartenhaus = formatSpeicherstandForSpeech(floatSoCGartenhaus);
                     const spokenSoCGarage = formatSpeicherstandForSpeech(floatSoCGarage);
-                    speakOutput = `Der Solarspeicher in der Garage ist zu ${spokenSoCGarage} Prozent gefüllt und der Gartenhausspeicher zu ${spokenSoCGartenhaus} Prozent. `;
-                    // speakOutput = randomItemFromArray(handlerInput.t('temperatur_message'),{ temperatur: spokenTemp });
+                    speakOutput = handlerInput.t('speicher_message',{Garage: spokenSoCGarage, Gartenhaus: spokenSoCGartenhaus});      
+
+                    // speakOutput = `Der Solarspeicher in der Garage ist zu ${spokenSoCGarage} Prozent gefüllt und der Gartenhausspeicher zu ${spokenSoCGartenhaus} Prozent. `;
 
                     if (floatSoCGartenhaus < 50)
-                         text = `Für Waschmaschine oder Geschirrspüler ist das zu wenig, da sollten das schon mindestens 50 Prozent sein, also warte noch etwas`;
+                        text =  handlerInput.t('below50Prozent_comment');
                     else if (floatSoCGartenhaus >= 50)
-                         text = `Das reicht um Waschmaschine oder Geschirrspüler anzustellen, aber nicht beide gleichzeitig`;
+                        text =  handlerInput.t('above50Prozent_comment');
                     // Beispiel:
                     // const text = "Verdammt, das ist echt kacke und arschkalt und scheißkalt und scheißenkalt !";
                     // geblockte Wörter werden hier umgewandelt
