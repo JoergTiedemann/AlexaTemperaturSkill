@@ -422,27 +422,21 @@ const GetSolarIntentHandler = {
                     // speakOutput =  randomItemFromArray(handlerInput.t('temperatur_message'),{temperatur: floatTemp.toFixed(1)});
                     const spokenSoCGartenhaus = formatSpeicherstandForSpeech(floatSoCGartenhaus);
                     const spokenSoCGarage = formatSpeicherstandForSpeech(floatSoCGarage);
-                    speakOutput = `Der Speicher Garage ist zu ${spokenSoCGarage} Prozent gefüllt, der Gartenhaus-Speicher ist zu ${spokenSoCGartenhaus} Prozent gefüllt`;
+                    speakOutput = `Der Speicher Garage ist zu ${spokenSoCGarage} Prozent gefüllt und der Gartenhaus-Speicher zu ${spokenSoCGartenhaus} Prozent`;
                     // speakOutput = randomItemFromArray(handlerInput.t('temperatur_message'),{ temperatur: spokenTemp });
 
-                    // if (floatTemp >= 30)
-                    //     text = randomItemFromArray(handlerInput.t('kommentarUeber30_message'));
-                    // else if (floatTemp >= 20)
-                    //     text = randomItemFromArray(handlerInput.t('kommentar20bis30_message'));
-                    // else if (floatTemp >= 10)
-                    //     text = randomItemFromArray(handlerInput.t('kommentar10bis20_message'));
-                    // else if (floatTemp >= 0)
-                    //     text = randomItemFromArray(handlerInput.t('kommentarNullbis10_message'));
-                    // else
-                    //     text = randomItemFromArray(handlerInput.t('kommentarUnterNull_message'));
+                    if (floatSoCGartenhaus < 50)
+                         text = `Für Waschmaschine oder Geschirrspüler ist das zu wenig, da sollten das schon mindestens 50 Prozent sein`;
+                    else if (floatSoCGartenhaus >= 50)
+                         text = `Das reicht um Waschmaschine oder Geschirrspüler anzustellen, aber nicht beide gleichzeitig`;
                     // Beispiel:
                     // const text = "Verdammt, das ist echt kacke und arschkalt und scheißkalt und scheißenkalt !";
                     // geblockte Wörter werden hier umgewandelt
-                    // kommentar = sanitizeTextForAlexa(text);
+                    kommentar = sanitizeTextForAlexa(text);
                     // console.log(`~~~~ Kommentar:`,kommentar);
 
-                    // if (kommentar)
-                    //     speakOutput = speakOutput + breaktime + kommentar;
+                    if (kommentar)
+                        speakOutput = speakOutput + breaktime + kommentar;
                     // Dienste deaktivieren
                     await auth.signOut();
                     //snapshot.off();
@@ -654,7 +648,7 @@ function formatTemperatureForSpeech(temp) {
 
 function formatSpeicherstandForSpeech(temp) {
     // Zahl mit einer Nachkommastelle, Punkt durch Komma ersetzen
-    const formatted = temp.toFixed(1).replace('.', ',');
+    const formatted = temp.toFixed(0).replace('.', ',');
 
     // if (temp < 0) {
     //     return `<say-as interpret-as="cardinal">minus ${formatted}</say-as>`;
