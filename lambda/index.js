@@ -36,7 +36,7 @@ const strings = {
       'general_error': 'Sorry, es gab ein Problem mit dem was Du gesagt hast. Versuche es erneut.',
       'feuchtigkeit_message':'Die Luftfeuchtigkeit beträgt {feuchtigkeit} Prozent',
       'messzeit_message':'Die Temperatur wurde um {datumswert} gemessen',
-      'speicher_message':'Der Solarspeicher in der Garage ist zu {Garage} Prozent gefüllt und der Gartenhausspeicher zu ${Gartenhaus} Prozent.',
+      'speicher_message':'Der Solarspeicher in der Garage ist zu {Garage} Prozent gefüllt und der Gartenhausspeicher zu {Gartenhaus} Prozent.',
       'below50prozent_comment':`Für Waschmaschine oder Geschirrspüler ist das zu wenig, da sollten das schon mindestens 50 Prozent sein, also warte noch etwas`,
       'above50prozent_comment':`Das reicht um Waschmaschine oder Geschirrspüler anzustellen, aber nicht beide gleichzeitig`,
       'kommentarUeber30_message':[
@@ -430,9 +430,9 @@ const GetSolarIntentHandler = {
                     // speakOutput = `Der Solarspeicher in der Garage ist zu ${spokenSoCGarage} Prozent gefüllt und der Gartenhausspeicher zu ${spokenSoCGartenhaus} Prozent. `;
 
                     if (floatSoCGartenhaus < 50)
-                        text =  handlerInput.t('below50Prozent_comment');
+                        text =  handlerInput.t('below50prozent_comment');
                     else if (floatSoCGartenhaus >= 50)
-                        text =  handlerInput.t('above50Prozent_comment');
+                        text =  handlerInput.t('above50prozent_comment');
                     // Beispiel:
                     // const text = "Verdammt, das ist echt kacke und arschkalt und scheißkalt und scheißenkalt !";
                     // geblockte Wörter werden hier umgewandelt
