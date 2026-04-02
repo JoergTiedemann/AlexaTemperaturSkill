@@ -429,9 +429,9 @@ const GetSolarIntentHandler = {
 
                     // speakOutput = `Der Solarspeicher in der Garage ist zu ${spokenSoCGarage} Prozent gefüllt und der Gartenhausspeicher zu ${spokenSoCGartenhaus} Prozent. `;
 
-                    if (floatSoCGartenhaus < 50)
+                    if (floatSoCGarage < 50)
                         text =  handlerInput.t('below50prozent_comment');
-                    else if (floatSoCGartenhaus >= 50)
+                    else if (floatSoCGarage >= 50)
                         text =  handlerInput.t('above50prozent_comment');
                     // Beispiel:
                     // const text = "Verdammt, das ist echt kacke und arschkalt und scheißkalt und scheißenkalt !";
