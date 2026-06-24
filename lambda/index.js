@@ -59,7 +59,7 @@ const strings = {
       ], 
       'kommentar10bis20_message':[
         'nicht wirklich prickelnd',
-        'mist</say-as><break time="200ms"/> nicht wirklich prickelnd',
+        'mist<break time="200ms"/> nicht wirklich prickelnd',
         'geht gerade noch so',
         'ein bischen ungemütlich',
         'immerhin friert es nicht',
